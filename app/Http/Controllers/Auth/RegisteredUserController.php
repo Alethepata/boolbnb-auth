@@ -36,6 +36,15 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
+        ],
+        [
+            'name.min' => 'Il nome deve avere minimo :min lettere ',
+            'name.max' => 'Il nome deve avere massimo :max lettere ',
+            'surname.min' => 'Il cognome deve avere minimo :min lettere ',
+            'surname.max' => 'Il cognome deve avere massimo :max lettere ',
+            'email.lowercase' => 'L\'email deve essere scritta tutta in minuscolo',
+            'email.unique' => 'L\'indirizzo email esiste',
+            'email.max' => 'L\'email deve avere massimo :max lettere ',
         ]);
 
 
