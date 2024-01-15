@@ -98,8 +98,9 @@ class ApartmentController extends Controller
     {
         $route = route('admin.apartments.update', $apartment);
         $method = 'PUT';
+        $services = Service::all();
         $title = 'Modifica appartamento';
-        return view('admin.apartments.createedit', compact('apartment', 'title', 'route', 'method'));
+        return view('admin.apartments.createedit', compact('apartment', 'title', 'route', 'method', 'services'));
     }
 
     /**
@@ -109,9 +110,20 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
-        $apartment->fill($form_data);
+        $apartment->slug = Apartment::generateSlug($form_data['title']);
 
-        $apartment->save();
+        if (array_key_exists('img', $form_data)) {
+            if ($apartment->img) {
+                Storage::disk('public')->delete($apartment->img);
+            }
+            $form_data['img_name'] = $request->file('img')->getClientOriginalName();
+
+            $form_data['img'] = Storage::put('uploads', $form_data['img']);
+        }
+
+
+        $apartment->update($form_data);
+
 
         return redirect()->route('admin.apartments.show', $apartment);
     }

@@ -19,12 +19,15 @@
                 <li>Letti: {{ $apartment->beds }}</li>
                 <li>Bagni: {{ $apartment->bathrooms }}</li>
                 <li>Metri quadrati: {{ $apartment->square_meters }}m²</li>
-                @foreach ($apartment->services as $service)
-                    <li>Servizi {{ $service->title }}</li>
-                @endforeach
-
             </ul>
-        </div>
 
+            <h3>Servizi aggiuntivi:</h3>
+
+            @forelse ($apartment->services as $service)
+                <span>{{ $service->title }}</span>
+            @empty
+                <span>Non ci sono servizi aggiuntivi</span>
+            @endforelse
+        </div>
     </div>
 @endsection

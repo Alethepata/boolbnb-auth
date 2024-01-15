@@ -24,7 +24,6 @@ class Apartment extends Model
         'img_name',
         'img',
         'is_visible',
-        'services'
     ];
 
     public function Services()

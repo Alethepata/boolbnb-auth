@@ -78,8 +78,8 @@
 
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach ($services as $service)
-                    <input type="checkbox" class="btn-check" id="service-{{ $service->id }}"
-                        value="{{ $service->id }}" autocomplete="off">
+                    <input type="checkbox" class="btn-check" id="service-{{ $service->id }}" name="services[]"
+                        value="{{ $service->id }}" autocomplete="off" @if ($apartment?->services->contains($service)) checked @endif>
                     <label class="btn btn-outline-primary"
                         for="service-{{ $service->id }}">{{ $service->title }}</label>
                 @endforeach
