@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class ApartmentController extends Controller
 {
@@ -24,10 +25,11 @@ class ApartmentController extends Controller
      */
     public function create()
     {
+        $apartment = null;
         $route = route('admin.apartments.store');
         $method = 'POST';
         $title = 'Aggiungi nuovo appartamento';
-        return view('admin.apartments.createedit', compact('title', 'route', 'method'));
+        return view('admin.apartments.createedit', compact('title', 'route', 'method', 'apartment'));
     }
 
     /**
@@ -43,20 +45,36 @@ class ApartmentController extends Controller
             $form_data['img'] = Storage::put('uploads', $form_data['img']);
         }
 
-        $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
-        $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
-
-        $response = Http::post('https://api.tomtom.com/search/2/geocode/Via%Ostilia,&23&00184.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
-
-        $json_data = $response->json();
-
-        dd($json_data);
-
-
         $new_apartment->fill($form_data);
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
+        // $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+
+        // $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
+
+        // $response   = Http::post('https://api.tomtom.com/search/2/geocode/Via&Ostilia,23&00184.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
+
+        // $jsonData = $response->json();
+
+        // dd($jsonData);
+
+        // $client = new Client();
+
+        // try {
+        //     $response = $client->get($apiUrl, [
+        //         'headers' => [
+        //             'Address' => 'Via&Ostilia,23&00184',
+        //             'Authorization' => 'Bearer' . $apiKey,
+        //         ]
+        //     ]);
+
+        //     $data = json_decode($response->getBody(), true);
+
+        //     return response()->json($data);
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => $e->getMessage()], 500);
+        // };
 
         $new_apartment->save();
 
@@ -85,16 +103,24 @@ class ApartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment->fill($form_data);
+
+        $apartment->save();
+
+        return redirect()->route('admin.apartments.show', $apartment);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index');
     }
 }

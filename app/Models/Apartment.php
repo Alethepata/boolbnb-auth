@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 class Apartment extends Model
 {
@@ -45,5 +46,17 @@ class Apartment extends Model
             $c++;
         }
         return $slug;
+    }
+
+    public static function getApi()
+    {
+        $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+        $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
+
+        $response = Http::get('https://api.tomtom.com/search/2/geocode/Via%Ostilia,&23&00184.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
+
+        $json_data = $response->json();
+
+        return $json_data;
     }
 }

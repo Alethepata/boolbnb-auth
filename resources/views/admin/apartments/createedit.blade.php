@@ -11,53 +11,65 @@
             @method($method)
             <div class="mb-3">
                 <label for="title" class="form-label">Nome dell'appartamento</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title"
+                    value="{{ old('title', $apartment?->title) }}">
             </div>
             <div class="mb-3">
                 <label for="rooms" class="form-label">Numero di stanze</label>
-                <input type="number" class="form-control" id="rooms" name="rooms">
+                <input type="number" class="form-control" id="rooms" name="rooms"
+                    value="{{ old('rooms', $apartment?->rooms) }}">
             </div>
             <div class="mb-3">
                 <label for="beds" class="form-label">Numero di letti</label>
-                <input type="number" class="form-control" id="beds" name="beds">
+                <input type="number" class="form-control" id="beds" name="beds"
+                    value="{{ old('beds', $apartment?->beds) }}">
             </div>
             <div class="mb-3">
                 <label for="bathrooms" class="form-label">Numero di bagni</label>
-                <input type="number" class="form-control" id="bathrooms" name="bathrooms">
+                <input type="number" class="form-control" id="bathrooms" name="bathrooms"
+                    value="{{ old('bathrooms', $apartment?->bathrooms) }}">
             </div>
             <div class="mb-3">
                 <label for="square-meters" class="form-label">Metri quadrati</label>
-                <input type="number" class="form-control" id="square-meters" name="square_meters">
+                <input type="number" class="form-control" id="square-meters" name="square_meters"
+                    value="{{ old('square_meters', $apartment?->square_meters) }}">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo</label>
-                <input type="text" class="form-control" id="address" name="address">
+                <input type="text" class="form-control" id="address" name="address"
+                    value="{{ old('address', $apartment?->address) }}">
             </div>
             <div class="mb-3">
                 <label for="municipality" class="form-label">Comune</label>
-                <input type="text" class="form-control" id="municipality" name="municipality">
+                <input type="text" class="form-control" id="municipality" name="municipality"
+                    value="{{ old('municipality', $apartment?->municipality) }}">
             </div>
             <div class="mb-3">
                 <label for="province" class="form-label">Provincia</label>
-                <input type="text" class="form-control" id="province" name="province">
+                <input type="text" class="form-control" id="province" name="province"
+                    value="{{ old('province', $apartment?->province) }}">
             </div>
             <div class="mb-3">
                 <label for="postal-code" class="form-label">CAP</label>
-                <input type="number" class="form-control" id="postal-code" name="postal_code">
+                <input type="number" class="form-control" id="postal-code" name="postal_code"
+                    value="{{ old('postal_code', $apartment?->postal_code) }}">
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input type="file" class="form-control" id="image" name="img">
+                <input type="file" class="form-control" id="image" name="img"
+                    value="{{ old('img', $apartment?->img) }}">
             </div>
             <div class="d-flex">
                 <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="is_visible" value="1" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="is_visible" value="1" id="flexRadioDefault1"
+                        @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault1">
                         Visibile
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_visible" value="0" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="is_visible" value="0" id="flexRadioDefault2"
+                        @if (!old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault2">
                         Non visibile
                     </label>
