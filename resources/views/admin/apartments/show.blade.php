@@ -8,7 +8,7 @@
         <p>{{ $apartment->address }}</p>
 
         <div class="image">
-            <img src="{{ $apartment->img }}" alt="{{ $apartment->title }}">
+            <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
         </div>
 
         <div>
