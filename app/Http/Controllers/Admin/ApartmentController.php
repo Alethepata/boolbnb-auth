@@ -49,32 +49,21 @@ class ApartmentController extends Controller
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
-        // $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+        $address_api = $form_data['address'] . ' ' . $form_data['postal_code'] . ' ' . $form_data['municipality'] . ' ' . $form_data['province'];
 
-        // $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
+        str_replace(' ', '%', $address_api);
 
-        // $response   = Http::post('https://api.tomtom.com/search/2/geocode/Via&Ostilia,23&00184.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
+        $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
 
-        // $jsonData = $response->json();
+        $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
 
-        // dd($jsonData);
+        // $response = file_get_contents('https://api.tomtom.com/search/2/geocode/Via&Primo&Levi,2&10057.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
 
-        // $client = new Client();
+        $response = file_get_contents($apiUrl . $address_api . '.json?' . $apiKey);
 
-        // try {
-        //     $response = $client->get($apiUrl, [
-        //         'headers' => [
-        //             'Address' => 'Via&Ostilia,23&00184',
-        //             'Authorization' => 'Bearer' . $apiKey,
-        //         ]
-        //     ]);
+        $response_decode = json_decode($response, true);
 
-        //     $data = json_decode($response->getBody(), true);
-
-        //     return response()->json($data);
-        // } catch (\Exception $e) {
-        //     return response()->json(['error' => $e->getMessage()], 500);
-        // };
+        dd($response_decode);
 
         $new_apartment->save();
 
