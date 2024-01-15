@@ -19,6 +19,10 @@
                 <li>Letti: {{ $apartment->beds }}</li>
                 <li>Bagni: {{ $apartment->bathrooms }}</li>
                 <li>Metri quadrati: {{ $apartment->square_meters }}m²</li>
+                @foreach ($apartment->services as $service)
+                    <li>Servizi {{ $service->title }}</li>
+                @endforeach
+
             </ul>
         </div>
 

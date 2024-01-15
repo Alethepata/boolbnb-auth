@@ -23,7 +23,8 @@ class Apartment extends Model
         'province',
         'img_name',
         'img',
-        'is_visible'
+        'is_visible',
+        'services'
     ];
 
     public function Services()

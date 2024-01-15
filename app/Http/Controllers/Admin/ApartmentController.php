@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -28,8 +29,9 @@ class ApartmentController extends Controller
         $apartment = null;
         $route = route('admin.apartments.store');
         $method = 'POST';
+        $services = Service::all();
         $title = 'Aggiungi nuovo appartamento';
-        return view('admin.apartments.createedit', compact('title', 'route', 'method', 'apartment'));
+        return view('admin.apartments.createedit', compact('title', 'route', 'method', 'apartment', 'services'));
     }
 
     /**
@@ -73,6 +75,10 @@ class ApartmentController extends Controller
 
 
         $new_apartment->save();
+
+        if (array_key_exists('services', $form_data)) {
+            $new_apartment->services()->attach($form_data['services']);
+        }
 
         return redirect()->route('admin.apartments.show', $new_apartment);
     }

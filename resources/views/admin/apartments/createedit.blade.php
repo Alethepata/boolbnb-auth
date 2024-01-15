@@ -75,6 +75,15 @@
                     </label>
                 </div>
             </div>
+
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($services as $service)
+                    <input type="checkbox" class="btn-check" id="service-{{ $service->id }}"
+                        value="{{ $service->id }}" autocomplete="off">
+                    <label class="btn btn-outline-primary"
+                        for="service-{{ $service->id }}">{{ $service->title }}</label>
+                @endforeach
+            </div>
             <button type="submit" class="btn btn-primary">Salva</button>
         </form>
 
