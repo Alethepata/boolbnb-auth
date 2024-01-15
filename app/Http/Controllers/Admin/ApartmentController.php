@@ -22,7 +22,9 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+
+        $title = 'Aggiungi nuovo appartamento';
+        return view('admin.apartments.createedit', compact('title'));
     }
 
     /**
@@ -36,17 +38,18 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Apartment $apartment)
     {
-        //
+        $title = 'Modifica appartamento';
+        return view('admin.apartments.createedit', compact('apartment', 'title'));
     }
 
     /**
