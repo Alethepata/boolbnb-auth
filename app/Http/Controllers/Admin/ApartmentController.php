@@ -49,21 +49,28 @@ class ApartmentController extends Controller
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
-        $address_api = $form_data['address'] . ' ' . $form_data['postal_code'] . ' ' . $form_data['municipality'] . ' ' . $form_data['province'];
-
-        str_replace(' ', '%', $address_api);
+        $address_api = $form_data['address'] . ' ' . $form_data['postal_code'];
 
         $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
 
         $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
 
-        // $response = file_get_contents('https://api.tomtom.com/search/2/geocode/Via&Primo&Levi,2&10057.json?key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l');
-
-        $response = file_get_contents($apiUrl . $address_api . '.json?' . $apiKey);
+        $response = file_get_contents($apiUrl . str_replace(' ', '&', $address_api) . '.json?' . $apiKey);
 
         $response_decode = json_decode($response, true);
 
-        dd($response_decode);
+        $new_apartment->latitude = $response_decode['results'][0]['position']['lat'];
+
+        $new_apartment->longitude = $response_decode['results'][0]['position']['lon'];
+
+        $new_apartment->address = $response_decode['results'][0]['address']['streetName'] . ', ' . $response_decode['results'][0]['address']['streetNumber'];
+
+        $new_apartment->municipality = $response_decode['results'][0]['address']['municipality'];
+
+        $new_apartment->postal_code = $response_decode['results'][0]['address']['postalCode'];
+
+        $new_apartment->province = $response_decode['results'][0]['address']['countrySecondarySubdivision'];
+
 
         $new_apartment->save();
 

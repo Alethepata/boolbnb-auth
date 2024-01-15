@@ -69,7 +69,7 @@
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="is_visible" value="0" id="flexRadioDefault2"
-                        @if (!old('is_visible', $apartment?->is_visible)) checked @endif>
+                        @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault2">
                         Non visibile
                     </label>
