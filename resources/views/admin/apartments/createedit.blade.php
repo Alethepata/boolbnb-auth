@@ -83,8 +83,12 @@
                     value="{{ old('img', $apartment?->img) }}">
                 <div class="image-container mt-3">
                     <p>Antemprima immagine:</p>
-                    <img id="image-preview" width="300" height="200" src="{{ asset('storage/' . $apartment?->img) }}"
-                        alt="">
+                    @if ($apartment?->img)
+                        <img id="image-preview" width="300" height="200"
+                            src="{{ asset('storage/' . $apartment?->img) }}" alt="">
+                    @else
+                        <h3>Nessun immagine caricata</h3>
+                    @endif
                 </div>
                 @error('img')
                     <span class="invalid-feedback" role="alert">
