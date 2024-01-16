@@ -35,6 +35,7 @@ class RegisteredUserController extends Controller
             'surname' => ['nullable','min:2', 'max:45'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'date_of_birth' => ['nullable','before_or_equal:' . now()->subYears(18)->format('d-m-Y')],
 
         ],
         [
@@ -50,6 +51,7 @@ class RegisteredUserController extends Controller
             'password.min' => 'La password deve avere minimo :min caratteri ',
             'password.max' => 'La password deve avere massimo :max caratteri ',
             'password.confirmed' => 'Le password non sono uguali ',
+            'date_of_birth.before_or_equal' => 'Devi avere almeno 18 anni per registrarti.',
         ]);
 
 
