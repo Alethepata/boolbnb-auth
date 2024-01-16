@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'surname' => ['nullable','min:2', 'max:45'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'date_of_birth' => ['nullable','before_or_equal:' . now()->subYears(18)->format('d-m-Y')],
+            'date_of_birth' => ['nullable','date','before_or_equal:' . now()->subYears(18)->format('d-m-Y')],
 
         ],
         [
