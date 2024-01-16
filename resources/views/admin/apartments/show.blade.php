@@ -9,10 +9,10 @@
 
         <div class="image">
 
-            @if (strpos($apartment->img, 'uploads' !== false) )
-                <img src="{{ $apartment->img }}" alt="{{ $apartment->title }}">
-            @else
+            @if (substr($apartment->img, 0,7) == 'uploads')
                 <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
+            @else
+                <img src="{{ $apartment->img }}" alt="{{ $apartment->title }}">
             @endif
 
         </div>
