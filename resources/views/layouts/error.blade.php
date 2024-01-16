@@ -17,7 +17,7 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center" style='
 height: 100vh;'>
-    <div class="card">
+    <div class="card text-center p-5" style='min-width: 600px;'>
         <div class="card-body">
             @yield('content')
             <a href="{{route('admin.home')}}" class= 'btn btn-primary '>Torna alla Dashboard</a>

@@ -33,10 +33,18 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
+        //403
         if ($exception instanceof AuthorizationException) {
             return response()->view('errors.403',[], 403);
         }
 
+        //404
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->view('errors.404', [], 404);
+        }
+
         return parent::render($request, $exception);
+
+
     }
 }
