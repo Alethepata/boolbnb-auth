@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'email.lowercase' => 'L\'email deve essere scritta tutta in minuscolo',
             'email.unique' => 'L\'indirizzo email esiste',
             'email.max' => 'L\'email deve avere massimo :max lettere ',
-            'email.password' => 'Inserire la password',
+            'password.required' => 'Inserire la password',
             'password.min' => 'La password deve avere minimo :min caratteri ',
             'password.max' => 'La password deve avere massimo :max caratteri ',
             'password.confirmed' => 'Le password non sono uguali ',
