@@ -31,6 +31,13 @@ class LoginRequest extends FormRequest
             'password' => ['required', 'string'],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Inserire l\'email',
+            'password.required' => 'Inserire la password',
+        ];
+    }
 
     /**
      * Attempt to authenticate the request's credentials.
