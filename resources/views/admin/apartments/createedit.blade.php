@@ -17,22 +17,25 @@
             <div class="mb-3">
                 <label for="rooms" class="form-label">Numero di stanze</label>
                 <input type="number" class="form-control" id="rooms" name="rooms"
-                    value="{{ old('rooms', $apartment?->rooms) }}" required autocomplete="rooms">
+                    value="{{ old('rooms', $apartment?->rooms) }}" required autocomplete="rooms" min="1"
+                    max="100">
             </div>
             <div class="mb-3">
                 <label for="beds" class="form-label">Numero di letti</label>
                 <input type="number" class="form-control" id="beds" name="beds"
-                    value="{{ old('beds', $apartment?->beds) }}" required autocomplete="beds">
+                    value="{{ old('beds', $apartment?->beds) }}" required autocomplete="beds" min="1" max="100">
             </div>
             <div class="mb-3">
                 <label for="bathrooms" class="form-label">Numero di bagni</label>
                 <input type="number" class="form-control" id="bathrooms" name="bathrooms"
-                    value="{{ old('bathrooms', $apartment?->bathrooms) }}" required autocomplete="bathrooms">
+                    value="{{ old('bathrooms', $apartment?->bathrooms) }}" required autocomplete="bathrooms" min="1"
+                    max="100">
             </div>
             <div class="mb-3">
                 <label for="square-meters" class="form-label">Metri quadrati</label>
                 <input type="number" class="form-control" id="square-meters" name="square_meters"
-                    value="{{ old('square_meters', $apartment?->square_meters) }}" required autocomplete="square_meters">
+                    value="{{ old('square_meters', $apartment?->square_meters) }}" required autocomplete="square_meters"
+                    min="1" max="1000">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo</label>
@@ -52,7 +55,8 @@
             <div class="mb-3">
                 <label for="postal-code" class="form-label">CAP</label>
                 <input type="number" class="form-control" id="postal-code" name="postal_code"
-                    value="{{ old('postal_code', $apartment?->postal_code) }}" required autocomplete="postal_code">
+                    value="{{ old('postal_code', $apartment?->postal_code) }}" required autocomplete="postal_code"
+                    min="0">
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
@@ -61,15 +65,16 @@
             </div>
             <div class="d-flex">
                 <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="is_visible" value="1" id="flexRadioDefault1" required autocomplete="is_visible"
+                    <input class="form-check-input" type="radio" name="is_visible" value="1"
+                        id="flexRadioDefault1" required autocomplete="is_visible"
                         @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault1">
                         Visibile
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_visible" value="0" id="flexRadioDefault2"
-                        @if (old('is_visible', $apartment?->is_visible)) checked @endif>
+                    <input class="form-check-input" type="radio" name="is_visible" value="0"
+                        id="flexRadioDefault2" @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault2">
                         Non visibile
                     </label>
