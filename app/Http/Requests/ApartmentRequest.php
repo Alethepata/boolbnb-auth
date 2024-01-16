@@ -55,9 +55,6 @@ class ApartmentRequest extends FormRequest
             'img.required' => 'Devi inserire una foto',
             'is_visible.required' => 'Devi inserire questo campo',
 
-
-
-
         ];
     }
 }
