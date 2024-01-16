@@ -20,9 +20,6 @@ return new class extends Migration
             $table->tinyInteger('bathrooms');
             $table->smallInteger('square_meters');
             $table->string('address');
-            $table->string('municipality');
-            $table->string('postal_code');
-            $table->string('province');
             $table->decimal('longitude', $precision = 11, $scale = 8)->nullable();
             $table->decimal('latitude', $precision = 11, $scale = 8)->nullable();
             $table->string('img_name');

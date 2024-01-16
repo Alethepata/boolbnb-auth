@@ -22,10 +22,7 @@ class ApartmentsTableSeeder extends Seeder
         $new_apartment->beds = 5;
         $new_apartment->bathrooms = 5;
         $new_apartment->square_meters = 100;
-        $new_apartment->address = 'Via Ostilia, 23';
-        $new_apartment->municipality = 'Roma';
-        $new_apartment->postal_code = '00184';
-        $new_apartment->province = 'RM';
+        $new_apartment->address = 'Via Ostilia, 23 RM';
         $new_apartment->longitude = 12.495;
         $new_apartment->latitude = 41.88861;
         $new_apartment->img_name = 'Immagine_1';

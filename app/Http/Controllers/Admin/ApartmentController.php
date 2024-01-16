@@ -55,7 +55,7 @@ class ApartmentController extends Controller
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
-        $address_api = $form_data['address'] . ' ' . $form_data['postal_code'];
+        $address_api = $form_data['address'];
 
         $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
 
@@ -68,15 +68,6 @@ class ApartmentController extends Controller
         $new_apartment->latitude = $response_decode['results'][0]['position']['lat'];
 
         $new_apartment->longitude = $response_decode['results'][0]['position']['lon'];
-
-        $new_apartment->address = $response_decode['results'][0]['address']['streetName'] . ', ' . $response_decode['results'][0]['address']['streetNumber'];
-
-        $new_apartment->municipality = $response_decode['results'][0]['address']['municipality'];
-
-        $new_apartment->postal_code = $response_decode['results'][0]['address']['postalCode'];
-
-        $new_apartment->province = $response_decode['results'][0]['address']['countrySecondarySubdivision'];
-
 
         $new_apartment->save();
 

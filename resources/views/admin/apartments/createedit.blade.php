@@ -43,38 +43,21 @@
                     value="{{ old('address', $apartment?->address) }}" required autocomplete="address">
             </div>
             <div class="mb-3">
-                <label for="municipality" class="form-label">Comune</label>
-                <input type="text" class="form-control" id="municipality" name="municipality"
-                    value="{{ old('municipality', $apartment?->municipality) }}" required autocomplete="municipality">
-            </div>
-            <div class="mb-3">
-                <label for="province" class="form-label">Provincia</label>
-                <input type="text" class="form-control" id="province" name="province"
-                    value="{{ old('province', $apartment?->province) }}" required autocomplete="province">
-            </div>
-            <div class="mb-3">
-                <label for="postal-code" class="form-label">CAP</label>
-                <input type="number" class="form-control" id="postal-code" name="postal_code"
-                    value="{{ old('postal_code', $apartment?->postal_code) }}" required autocomplete="postal_code"
-                    min="0">
-            </div>
-            <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
                 <input type="file" class="form-control" id="image" name="img"
                     value="{{ old('img', $apartment?->img) }}" required autocomplete="img">
             </div>
             <div class="d-flex">
                 <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" name="is_visible" value="1"
-                        id="flexRadioDefault1" required autocomplete="is_visible"
-                        @if (old('is_visible', $apartment?->is_visible)) checked @endif>
+                    <input class="form-check-input" type="radio" name="is_visible" value="1" id="flexRadioDefault1"
+                        required autocomplete="is_visible" @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault1">
                         Visibile
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_visible" value="0"
-                        id="flexRadioDefault2" @if (old('is_visible', $apartment?->is_visible)) checked @endif>
+                    <input class="form-check-input" type="radio" name="is_visible" value="0" id="flexRadioDefault2"
+                        @if (old('is_visible', $apartment?->is_visible)) checked @endif>
                     <label class="form-check-label" for="flexRadioDefault2">
                         Non visibile
                     </label>
