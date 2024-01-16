@@ -26,6 +26,11 @@ class Apartment extends Model
         'is_visible',
     ];
 
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function Services()
     {
         return $this->belongsToMany(Service::class);

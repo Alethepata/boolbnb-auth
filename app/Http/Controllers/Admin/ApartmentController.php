@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
@@ -17,7 +18,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+
+        $apartments = Apartment::orderBy('id', 'desc')->where('user_id', Auth::id())->get();
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -48,6 +50,8 @@ class ApartmentController extends Controller
         }
 
         $new_apartment->fill($form_data);
+
+        $new_apartment->user_id = Auth::id();
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
