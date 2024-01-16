@@ -41,6 +41,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->invalidate();
 
+        // Ottieni l'ID dell'utente autenticato
+        $userId = Auth::id();
+
+        // Salva l'ID dell'utente in sessione
+        $request->session()->put('user_id', $userId);
+
         $request->session()->regenerateToken();
 
 
