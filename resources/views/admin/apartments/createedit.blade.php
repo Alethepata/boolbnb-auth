@@ -132,6 +132,5 @@
 
             <button type="submit" class="btn btn-primary">Salva</button>
         </form>
-
     </div>
 @endsection
