@@ -83,7 +83,15 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+
+        if (Auth::check() && Auth::id() === $apartment->user_id) {
+
+            return view('admin.apartments.show', compact('apartment'));
+        } else {
+
+            return abort(404, 'Non sei autorizzato a visualizzare questo appartamento.');
+        }
+        // return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
@@ -95,7 +103,13 @@ class ApartmentController extends Controller
         $method = 'PUT';
         $services = Service::all();
         $title = 'Modifica appartamento';
-        return view('admin.apartments.createedit', compact('apartment', 'title', 'route', 'method', 'services'));
+        if (Auth::check() && Auth::id() === $apartment->user_id) {
+
+            return view('admin.apartments.createedit', compact('apartment', 'title', 'route', 'method', 'services'));
+        } else {
+
+            return abort(404, 'Non sei autorizzato a visualizzare questo appartamento.');
+        }
     }
 
     /**
