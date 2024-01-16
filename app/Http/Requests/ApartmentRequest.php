@@ -23,21 +23,22 @@ class ApartmentRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:3', 'max:255'],
-            'rooms' => ['required' , 'min:1' , 'max:100'],
-            'beds' => ['required' , 'min:1' , 'max:100'],
-            'bathrooms' => ['required' , 'min:1' , 'max:100'],
-            'square_meters'=>['required', 'min:10' , 'max:1000'],
+            'rooms' => ['required' ,'numeric', 'min:1' , 'max:100'],
+            'beds' => ['required','numeric' , 'min:1' , 'max:100'],
+            'bathrooms' => ['required' , 'numeric', 'min:1' , 'max:100'],
+            'square_meters'=>['required', 'numeric', 'min:10' , 'max:1000'],
             'address'=> ['required', 'min:2'],
             'img'=>['required'],
-            'is_visible'=>['required']
+            'is_visible'=>['required'],
+            'services'=>['required'],
         ];
     }
     public function messages(): array
     {
         return [
-            'title.required' => 'Devi inserire il titolo',
-            'title.min' => 'Il titolo deve avere un minimo di :min',
-            'title.max' => 'Il titolo deve avere un massimo di :max',
+            'title.required' => 'Devi inserire il nome dell\'appartamento',
+            'title.min' => 'Il nome dell\'appartamento deve avere un minimo di :min',
+            'title.max' => 'Il nome dell\'appartamento deve avere un massimo di :max',
             'rooms.required' => 'Devi inserire il numero di stanze',
             'rooms.min' => 'Le stanze devono avere un minimo di :min',
             'rooms.max' => 'Le stanze possono avere un massimo di :max',
@@ -53,7 +54,8 @@ class ApartmentRequest extends FormRequest
             'address.required' => 'Devi inserire una residenza',
             'address.min' => 'La residenza deve avere un minimo di :min caratteri ',
             'img.required' => 'Devi inserire una foto',
-            'is_visible.required' => 'Devi inserire questo campo',
+            'is_visible.required' => 'Devi inserire la visibilità',
+            'services.required' => 'Devi inserire almeno un servizio',
 
         ];
     }
