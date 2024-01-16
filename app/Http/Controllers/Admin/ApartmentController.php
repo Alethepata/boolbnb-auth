@@ -90,7 +90,7 @@ class ApartmentController extends Controller
             return view('admin.apartments.show', compact('apartment'));
         } else {
 
-            return abort(404, 'Non sei autorizzato a visualizzare questo appartamento.');
+            return abort(403, 'Non sei autorizzato a visualizzare questo appartamento.');
         }
         // return view('admin.apartments.show', compact('apartment'));
     }
@@ -109,7 +109,7 @@ class ApartmentController extends Controller
             return view('admin.apartments.createedit', compact('apartment', 'title', 'route', 'method', 'services'));
         } else {
 
-            return abort(404, 'Non sei autorizzato a visualizzare questo appartamento.');
+            return abort(403, 'Non sei autorizzato a visualizzare questo appartamento.');
         }
     }
 
