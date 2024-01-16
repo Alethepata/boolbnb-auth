@@ -9,6 +9,9 @@
 
         <div class="image">
             <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
+            @if ( $apartment->img_name != asset('storage/' . $apartment->img))
+                <img src="{{ $apartment->img}}" alt="{{ $apartment->title }}">
+            @endif
         </div>
 
         <div>
