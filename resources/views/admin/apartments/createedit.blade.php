@@ -83,8 +83,8 @@
                     value="{{ old('img', $apartment?->img) }}">
                 <div class="image-container mt-3">
                     <p>Antemprima immagine:</p>
-                    <img id="image-preview" width="300" height="200" onerror="this.src='/img/placeholder.png'"
-                        src="{{ asset('storage/' . $apartment?->img) }}" alt="">
+                    <img id="image-preview" width="300" height="200" src="{{ asset('storage/' . $apartment?->img) }}"
+                        alt="">
                 </div>
                 @error('img')
                     <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="is_visible" value="0"
-                            id="flexRadioDefault2" @if (old('is_visible', $apartment?->is_visible)) checked @endif>
+                            id="flexRadioDefault2" @if (!old('is_visible', $apartment?->is_visible)) checked @endif>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Non visibile
                         </label>
