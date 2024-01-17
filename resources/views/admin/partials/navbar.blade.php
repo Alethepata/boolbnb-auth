@@ -1,4 +1,4 @@
-<aside class="bg-dark container-fluid">
+<aside class="container-fluid">
     <nav>
         <ul class="d-flex">
             <li class="mb-3 mx-3"><a href="{{ route('admin.home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
