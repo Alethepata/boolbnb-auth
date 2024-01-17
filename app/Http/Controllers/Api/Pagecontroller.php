@@ -37,10 +37,12 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments($latitude, $longitude, $radius)
+    public function searchApartments($num_rooms,$num_beds,$latitude, $longitude, $radius)
     {
 
-        $apartments = Apartment::all();
+        $apartments = Apartment::where('rooms', '>=', $num_rooms)
+                                ->where('beds', '>=', $num_beds)
+                                ->get();
 
         $filtredApartments = [];
 

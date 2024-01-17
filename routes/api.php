@@ -23,4 +23,4 @@ use App\Http\Controllers\Api\Pagecontroller;
 Route::get('/apartments', [PageController::class, 'apartments']);
 Route::get('/apartments/apartment-detail/{slug}', [PageController::class, 'apartmentDetail']);
 Route::get('/services', [PageController::class, 'services']);
-Route::get('/apartments/search-apartments/{latitude}/{longitude}/{radius}', [PageController::class, 'searchApartments']);
+Route::get('/apartments/search-apartments/{num_rooms}/{num_beds}/{latitude}/{longitude}/{radius}', [PageController::class, 'searchApartments']);
