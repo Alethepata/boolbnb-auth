@@ -66,7 +66,8 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            {{-- Indirizzo --}}
+            <div class="">
                 <label for="address" class="form-label @error('address') is-invalid @enderror">Indirizzo *</label>
                 <input type="text" class="form-control" id="address" name="address"
                     value="{{ old('address', $apartment?->address) }}" onkeyup="getApi()" autocomplete="off"
@@ -77,15 +78,19 @@
                     </span>
                 @enderror
             </div>
+
+            {{-- tendina indirizzo --}}
             <div class="mb-3">
-                <ul id="autocompleteList"></ul>
+                <ul id="autocompleteList" class="list-group"></ul>
             </div>
-            <div class="mb-3">
+            {{-- lat --}}
+            <div class="mb-3 d-none">
                 <label for="latitude" class="form-label">Latitudine</label>
                 <input type="text" class="form-control" id="latitude" name="latitude"
                     value="{{ old('latitude', $apartment?->latitude) }}">
             </div>
-            <div class="mb-3">
+            {{-- lon --}}
+            <div class="mb-3 d-none">
                 <label for="longitude" class="form-label">Longitudine</label>
                 <input type="text" class="form-control" id="longitude" name="longitude"
                     value="{{ old('longitude', $apartment?->longitude) }}">
@@ -193,6 +198,17 @@
             // Aggiungi i nuovi suggerimenti all'elenco
             results.forEach(result => {
                 const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+
+                //active al passaggio del mouse
+                listItem.addEventListener("mouseover", function () {
+                    this.classList.add("active");
+                });
+                listItem.addEventListener("mouseout", function () {
+                    this.classList.remove("active");
+                });
+                //
+
                 listItem.textContent = result.address.freeformAddress;
                 // Aggiungi un gestore di eventi per gestire la selezione di un suggerimento
                 listItem.addEventListener('click', function() {
