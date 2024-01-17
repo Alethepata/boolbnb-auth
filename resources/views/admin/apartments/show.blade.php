@@ -9,7 +9,7 @@
 
         <div class="image">
 
-            @if (substr($apartment->img, 0,7) == 'uploads')
+            @if (substr($apartment->img, 0, 7) == 'uploads')
                 <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
             @else
                 <img src="{{ $apartment->img }}" alt="{{ $apartment->title }}">
@@ -30,7 +30,7 @@
             <h3>Servizi aggiuntivi:</h3>
 
             @forelse ($apartment->services as $service)
-                <span>{{ $service->title }}</span>
+                <span class="badge text-bg-primary">{{ $service->title }}</span>
             @empty
                 <span>Non ci sono servizi aggiuntivi</span>
             @endforelse

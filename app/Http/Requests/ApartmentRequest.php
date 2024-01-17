@@ -23,14 +23,14 @@ class ApartmentRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:3', 'max:255'],
-            'rooms' => ['required' ,'numeric', 'min:1' , 'max:100'],
-            'beds' => ['required','numeric' , 'min:1' , 'max:100'],
-            'bathrooms' => ['required' , 'numeric', 'min:1' , 'max:100'],
-            'square_meters'=>['required', 'numeric', 'min:10' , 'max:1000'],
-            'address'=> ['required', 'min:2'],
-            'img'=>['required'],
-            'is_visible'=>['required'],
-            'services'=>['required'],
+            'rooms' => ['required', 'numeric', 'min:1', 'max:100'],
+            'beds' => ['required', 'numeric', 'min:1', 'max:100'],
+            'bathrooms' => ['required', 'numeric', 'min:1', 'max:100'],
+            'square_meters' => ['required', 'numeric', 'min:10', 'max:1000'],
+            'address' => ['required', 'min:2'],
+            'img' => ['required'],
+            'is_visible' => ['required'],
+            'services' => ['required'],
         ];
     }
     public function messages(): array
