@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
+use Location\Coordinate;
+use Location\Distance\Vincenty;
 
 class Pagecontroller extends Controller
 {
@@ -35,10 +37,27 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    // public function searchApartments($lat, $lon, $rooms, $beds, $dist, $services)
-    // {
-    //     $apartments = Apartment::where()
-    // }
+    public function searchApartments($latitude, $longitude, $radius)
+    {
 
+        $apartments = Apartment::all();
 
+        $filtredApartments = [];
+
+        $baseCoordinate = new Coordinate($latitude, $longitude);
+
+        foreach ($apartments as $apartment) {
+            $apartmentCoordinate = new Coordinate($apartment->latitude, $apartment->longitude);
+
+            $calculator = new Vincenty();
+
+            $distance = $calculator->getDistance($baseCoordinate, $apartmentCoordinate);
+
+            if ($distance <= $radius * 1000) {
+                $filteredApartments[] = $apartment;
+            }
+        }
+
+        return response()->json(compact('filteredApartments'));
+    }
 }
