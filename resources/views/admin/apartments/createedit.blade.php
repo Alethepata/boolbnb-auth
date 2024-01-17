@@ -97,7 +97,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label @error('img') is-invalid @enderror">Immagine *</label>
+                <label for="image" class="form-label">Immagine *</label>
                 <input type="file" class="form-control" id="image" name="img"
                     value="{{ old('img', $apartment?->img) }}">
                 <div class="image-container mt-3">
@@ -109,11 +109,9 @@
                         <h3>Nessun immagine caricata</h3>
                     @endif
                 </div>
-                @error('img')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                @if (session('error'))
+                <p class="text-danger">{{session('error')}}</p>
+                @endif
             </div>
 
             <div class="visible mb-3">

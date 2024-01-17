@@ -28,7 +28,6 @@ class ApartmentRequest extends FormRequest
             'bathrooms' => ['required', 'numeric', 'min:1', 'max:100'],
             'square_meters' => ['required', 'numeric', 'min:10', 'max:1000'],
             'address' => ['required', 'min:2'],
-            'img' => ['required'],
             'is_visible' => ['required'],
             'services' => ['required'],
         ];
@@ -53,7 +52,6 @@ class ApartmentRequest extends FormRequest
             'square_meters.max' => 'I metri quadri possono avere un massimo di :max',
             'address.required' => 'Devi inserire una residenza',
             'address.min' => 'La residenza deve avere un minimo di :min caratteri ',
-            'img.required' => 'Devi inserire una foto',
             'is_visible.required' => 'Devi inserire la visibilità',
             'services.required' => 'Devi inserire almeno un servizio',
 
