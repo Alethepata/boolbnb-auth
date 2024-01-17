@@ -99,18 +99,15 @@
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine *</label>
                 <input type="file" class="form-control" id="image" name="img"
-                    value="{{ old('img', $apartment?->img) }}">
+                    value="{{ old('img', $apartment?->img) }}" onchange="imagePreview(event)">
                 <div class="image-container mt-3">
                     <p>Antemprima immagine:</p>
-                    @if ($apartment?->img)
-                        <img id="image-preview" width="300" height="200"
-                            src="{{ asset('storage/' . $apartment?->img) }}" alt="">
-                    @else
-                        <h3>Nessun immagine caricata</h3>
-                    @endif
+                    <img id="image-preview" width="300" height="200"
+                        onerror="this.src='/images/assets/Placeholder.png'"
+                        src="{{ asset('storage/' . $apartment?->img) }}" alt="">
                 </div>
                 @if (session('error'))
-                <p class="text-danger">{{session('error')}}</p>
+                    <p class="text-danger">{{ session('error') }}</p>
                 @endif
             </div>
 
@@ -199,10 +196,10 @@
                 listItem.classList.add('list-group-item');
 
                 //active al passaggio del mouse
-                listItem.addEventListener("mouseover", function () {
+                listItem.addEventListener("mouseover", function() {
                     this.classList.add("active");
                 });
-                listItem.addEventListener("mouseout", function () {
+                listItem.addEventListener("mouseout", function() {
                     this.classList.remove("active");
                 });
                 //

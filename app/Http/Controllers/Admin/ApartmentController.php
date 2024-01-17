@@ -52,7 +52,7 @@ class ApartmentController extends Controller
 
         $new_apartment->fill($form_data);
 
-        if(! $new_apartment->img){
+        if (!$new_apartment->img) {
             return redirect()->route('admin.apartments.create')->withInput()->with('error', 'Aggiungi foto');
         }
 
