@@ -41,11 +41,14 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius)
+    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius, $services)
     {
-
+        $servicesArray = explode(',', $services);
         $apartments = Apartment::where('rooms', '>=', $num_rooms)
             ->where('beds', '>=', $num_beds)
+            ->whereHas('Services', function ($query) use ($servicesArray){
+                $query->whereIn('Services.id', $servicesArray);
+            })
             ->get();
 
         $filtredApartments = [];
