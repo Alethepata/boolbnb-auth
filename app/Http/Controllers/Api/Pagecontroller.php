@@ -16,6 +16,10 @@ class Pagecontroller extends Controller
     {
         $apartments = Apartment::all();
 
+        foreach ($apartments as $apartment) {
+            $apartment->img = asset('storage/' . $apartment->img);
+        }
+
 
         return response()->json(compact('apartments'));
     }
@@ -37,12 +41,12 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments($num_rooms,$num_beds,$latitude, $longitude, $radius)
+    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius)
     {
 
         $apartments = Apartment::where('rooms', '>=', $num_rooms)
-                                ->where('beds', '>=', $num_beds)
-                                ->get();
+            ->where('beds', '>=', $num_beds)
+            ->get();
 
         $filtredApartments = [];
 
