@@ -30,6 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+<<<<<<< HEAD
         $request->validate(
             [
                 'name' => ['nullable', 'min:2', 'max:45'],
@@ -53,6 +54,31 @@ class RegisteredUserController extends Controller
                 'password.confirmed' => 'Le password non sono uguali ',
             ]
         );
+=======
+        $request->validate([
+            'name' => ['nullable','min:2', 'max:45'],
+            'surname' => ['nullable','min:2', 'max:45'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'date_of_birth' => ['nullable','date','before_or_equal:' . now()->subYears(18)->format('d-m-Y')],
+
+        ],
+        [
+            'name.min' => 'Il nome deve avere minimo :min lettere ',
+            'name.max' => 'Il nome deve avere massimo :max lettere ',
+            'surname.min' => 'Il cognome deve avere minimo :min lettere ',
+            'surname.max' => 'Il cognome deve avere massimo :max lettere ',
+            'email.required' => 'Inserire l\'email',
+            'email.lowercase' => 'L\'email deve essere scritta tutta in minuscolo',
+            'email.unique' => 'L\'indirizzo email esiste',
+            'email.max' => 'L\'email deve avere massimo :max lettere ',
+            'password.required' => 'Inserire la password',
+            'password.min' => 'La password deve avere minimo :min caratteri ',
+            'password.max' => 'La password deve avere massimo :max caratteri ',
+            'password.confirmed' => 'Le password non sono uguali ',
+            'date_of_birth.before_or_equal' => 'Devi avere almeno 18 anni per registrarti.',
+        ]);
+>>>>>>> f840887ebe718d9dd80782193b045e1422a20357
 
 
         $user = User::create([

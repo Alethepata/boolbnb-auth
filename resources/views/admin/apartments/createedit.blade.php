@@ -69,12 +69,26 @@
             <div class="mb-3">
                 <label for="address" class="form-label @error('address') is-invalid @enderror">Indirizzo *</label>
                 <input type="text" class="form-control" id="address" name="address"
-                    value="{{ old('address', $apartment?->address) }}">
+                    value="{{ old('address', $apartment?->address) }}" onkeyup="getApi()" autocomplete="off"
+                    list="countrydata">
                 @error('address')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+            <div class="mb-3">
+                <ul id="autocompleteList"></ul>
+            </div>
+            <div class="mb-3">
+                <label for="latitude" class="form-label">Latitudine</label>
+                <input type="text" class="form-control" id="latitude" name="latitude"
+                    value="{{ old('latitude', $apartment?->latitude) }}">
+            </div>
+            <div class="mb-3">
+                <label for="longitude" class="form-label">Longitudine</label>
+                <input type="text" class="form-control" id="longitude" name="longitude"
+                    value="{{ old('longitude', $apartment?->longitude) }}">
             </div>
 
             <div class="mb-3">
@@ -146,6 +160,54 @@
     </div>
 
     <script>
+        const apiKey = '5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
+        const apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+
+        function getApi() {
+            const search = address.value.trim();
+
+            if (search.length < 5) return;
+
+            axios.get(`${apiUrl}${encodeURIComponent(search)}.json?key=${apiKey}`)
+                .then(response => {
+                    if (response.data.results.length > 0) {
+                        const niceResults = response.data.results.map((result) => ({
+                            address: {
+                                freeformAddress: result.address.freeformAddress,
+                            },
+                            position: result.position
+                        }));
+                        updateAutocompleteList(niceResults);
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nella chiamata API di TomTom:', error);
+                });
+
+        }
+
+        function updateAutocompleteList(results) {
+            // Cancella l'elenco precedente
+            autocompleteList.innerHTML = '';
+
+            // Aggiungi i nuovi suggerimenti all'elenco
+            results.forEach(result => {
+                const listItem = document.createElement('li');
+                listItem.textContent = result.address.freeformAddress;
+                // Aggiungi un gestore di eventi per gestire la selezione di un suggerimento
+                listItem.addEventListener('click', function() {
+                    address.value = result.address.freeformAddress;
+                    latitude.value = result.position.lat;
+                    longitude.value = result.position.lon;
+
+                    autocompleteList.innerHTML =
+                        '';
+                });
+
+                autocompleteList.appendChild(listItem);
+            });
+        }
+
         function imagePreview(event) {
             const imagePreview = document.getElementById('image-preview');
             imagePreview.src = URL.createObjectURL(event.target.files[0]);

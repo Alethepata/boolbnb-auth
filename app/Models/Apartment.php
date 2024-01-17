@@ -21,6 +21,8 @@ class Apartment extends Model
         'img_name',
         'img',
         'is_visible',
+        'latitude',
+        'longitude'
     ];
 
     public function User()

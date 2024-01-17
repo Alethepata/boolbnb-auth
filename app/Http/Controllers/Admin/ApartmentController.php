@@ -56,20 +56,6 @@ class ApartmentController extends Controller
 
         $new_apartment->slug = Apartment::generateSlug($request->title);
 
-        $address_api = $form_data['address'];
-
-        $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
-
-        $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
-
-        $response = file_get_contents($apiUrl . str_replace(' ', '&', $address_api) . '.json?' . $apiKey);
-
-        $response_decode = json_decode($response, true);
-
-        $new_apartment->latitude = $response_decode['results'][0]['position']['lat'];
-
-        $new_apartment->longitude = $response_decode['results'][0]['position']['lon'];
-
         $new_apartment->save();
 
         if (array_key_exists('services', $form_data)) {
@@ -143,7 +129,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        if($apartment->img){
+        if ($apartment->img) {
             Storage::disk('public')->delete($apartment->img);
         }
         $apartment->delete();
