@@ -46,7 +46,7 @@ class Pagecontroller extends Controller
         $servicesArray = explode(',', $services);
         $apartments = Apartment::where('rooms', '>=', $num_rooms)
             ->where('beds', '>=', $num_beds)
-            ->whereHas('Services', function ($query) use ($servicesArray){
+            ->whereHas('Services', function ($query) use ($servicesArray) {
                 $query->whereIn('Services.id', $servicesArray);
             })
             ->get();
@@ -65,6 +65,9 @@ class Pagecontroller extends Controller
             if ($distance <= $radius * 1000) {
                 $filteredApartments[] = $apartment;
             }
+        }
+        foreach ($filteredApartments as $filteredApartment) {
+            $filteredApartment->img = asset('storage/' . $filteredApartment->img);
         }
 
         return response()->json(compact('filteredApartments'));
