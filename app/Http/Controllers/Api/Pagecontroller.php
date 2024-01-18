@@ -41,21 +41,25 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius, $services = null)
+    public function searchApartments( $latitude, $longitude, $radius, $num_rooms = null, $num_beds = null, $services = null)
     {
 
 
-        $query = Apartment::where('rooms', '>=', $num_rooms)
-            ->where('beds', '>=', $num_beds);
 
-        if ($services != null) {
-            // var_dump('if eseguito');
-            $servicesArray = explode(',', $services);
-            $query->whereHas('services', function ($subquery) use ($servicesArray) {
-                $subquery->whereIn('services.id', $servicesArray);
-            });
+        if($num_rooms != null && $num_beds != null){
+            // var_dump('if stanze letti');
+            $query = Apartment::where('rooms', '>=', $num_rooms)
+            ->where('beds', '>=', $num_beds);
+            if ($services != null ) {
+                // var_dump('if servizi eseguito');
+                $servicesArray = explode(',', $services);
+                $query->whereHas('services', function ($subquery) use ($servicesArray) {
+                    $subquery->whereIn('services.id', $servicesArray);
+                });
+            }
         }else{
-            // dd('if non eseguito');
+            // dd('if all');
+            $query = Apartment::all();
         }
 
         $apartments = $query->get();
