@@ -64,7 +64,7 @@ class Pagecontroller extends Controller
         }
         // var_dump('query^');
         $apartments = $query->get();
-        dd($query,$apartments);
+        // dd($query,$apartments);
 
         // Debugging
         // dd($num_rooms, $num_beds, $latitude, $longitude, $radius, $services, $servicesArray);
