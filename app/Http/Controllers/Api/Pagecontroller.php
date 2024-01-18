@@ -56,7 +56,7 @@ class Pagecontroller extends Controller
         }
         $filtredApartments = [];
 
-        if ($latitude === 0 && $longitude === 0) {
+        if ($latitude != 0 && $longitude != 0) {
 
 
             $baseCoordinate = new Coordinate($latitude, $longitude);
