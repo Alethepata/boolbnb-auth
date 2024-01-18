@@ -51,25 +51,36 @@ class Pagecontroller extends Controller
             })
             ->get();
 
+        foreach ($apartments as $apartment) {
+            $apartment->img = asset('storage/' . $apartment->img);
+        }
         $filtredApartments = [];
 
-        $baseCoordinate = new Coordinate($latitude, $longitude);
+        if ($latitude === 0 && $longitude === 0) {
 
-        foreach ($apartments as $apartment) {
-            $apartmentCoordinate = new Coordinate($apartment->latitude, $apartment->longitude);
 
-            $calculator = new Vincenty();
+            $baseCoordinate = new Coordinate($latitude, $longitude);
 
-            $distance = $calculator->getDistance($baseCoordinate, $apartmentCoordinate);
+            foreach ($apartments as $apartment) {
+                $apartmentCoordinate = new Coordinate($apartment->latitude, $apartment->longitude);
 
-            if ($distance <= $radius * 1000) {
+                $calculator = new Vincenty();
+
+                $distance = $calculator->getDistance($baseCoordinate, $apartmentCoordinate);
+
+                if ($distance <= $radius * 1000) {
+                    $filteredApartments[] = $apartment;
+                }
+            }
+
+            return response()->json(compact('filteredApartments'));
+        } else {
+
+            foreach ($apartments as $apartment) {
                 $filteredApartments[] = $apartment;
             }
-        }
-        foreach ($filteredApartments as $filteredApartment) {
-            $filteredApartment->img = asset('storage/' . $filteredApartment->img);
-        }
 
-        return response()->json(compact('filteredApartments'));
+            return response()->json(compact('filteredApartments'));
+        }
     }
 }
