@@ -58,11 +58,13 @@ class Pagecontroller extends Controller
                 });
             }
         }else{
-            // dd('if all');
-            $query = Apartment::all();
+            // var_dump('if all');
+            $query = Apartment::query();
+            // var_dump($query);
         }
-
+        // var_dump('query^');
         $apartments = $query->get();
+        dd($query,$apartments);
 
         // Debugging
         // dd($num_rooms, $num_beds, $latitude, $longitude, $radius, $services, $servicesArray);
