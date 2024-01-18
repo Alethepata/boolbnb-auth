@@ -41,15 +41,27 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius, $services)
+    public function searchApartments($num_rooms, $num_beds, $latitude, $longitude, $radius, $services = null)
     {
-        $servicesArray = explode(',', $services);
-        $apartments = Apartment::where('rooms', '>=', $num_rooms)
-            ->where('beds', '>=', $num_beds)
-            ->whereHas('Services', function ($query) use ($servicesArray) {
-                $query->whereIn('Services.id', $servicesArray);
-            })
-            ->get();
+
+
+        $query = Apartment::where('rooms', '>=', $num_rooms)
+            ->where('beds', '>=', $num_beds);
+
+        if ($services != null) {
+            // var_dump('if eseguito');
+            $servicesArray = explode(',', $services);
+            $query->whereHas('services', function ($subquery) use ($servicesArray) {
+                $subquery->whereIn('services.id', $servicesArray);
+            });
+        }else{
+            // dd('if non eseguito');
+        }
+
+        $apartments = $query->get();
+
+        // Debugging
+        // dd($num_rooms, $num_beds, $latitude, $longitude, $radius, $services, $servicesArray);
 
         foreach ($apartments as $apartment) {
             $apartment->img = asset('storage/' . $apartment->img);
