@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Apartment;
+use App\Models\Message;
 use App\Models\User;
 
 class ApartmentsTableSeeder extends Seeder
@@ -16,6 +17,7 @@ class ApartmentsTableSeeder extends Seeder
     {
         $new_apartment = new Apartment();
         $new_apartment->user_id = User::all()->random()->id;
+        $new_apartment->message_id = Message::inRandomOrder()->first()->id;
         $new_apartment->title = 'Incantevole appartamento romantico di Trastevere';
         $new_apartment->slug = Apartment::generateSlug($new_apartment->title);
         $new_apartment->rooms = 10;
