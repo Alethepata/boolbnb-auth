@@ -9,8 +9,8 @@ class Message extends Model
 {
     use HasFactory;
 
-    public function apartments() {
-        return $this->hasMany(Apartment::class);
+    public function apartment()
+    {
+        return $this->belongsTo(Apartment::class);
     }
-
 }
