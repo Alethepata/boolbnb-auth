@@ -35,6 +35,11 @@ class Apartment extends Model
         return $this->belongsToMany(Service::class);
     }
 
+    public function Message()
+    {
+        return $this->belongsToMany(Message::class);
+    }
+
     public static function generateSlug($string)
     {
 
