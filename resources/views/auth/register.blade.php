@@ -128,31 +128,42 @@
 
 
 
-    // name.addEventListener('blur', function(){
-    //     let correctNameLengthMin= validateNameLengthMin(name);
-    //     let correctNameLengthMax= validateNameLengthMax(name);
-    //     let message;
-    //     function validateNameLengthMin(value) {
-    //     if(value.value.length >= 2) return true;
-    //     }
-    //     function validateNameLengthMax(value) {
-    //     if(value.value.length <= 45) return true;
-    //     }
-    //     if(correctNameLengthMin){
-    //         message = ''
-    //     }else{
-    //         message = 'Il nome deve avere minimo 2 lettere'
-    //     };
-    //     if(correctNameLengthMax){
-    //         message = ''
-    //     }else{
-    //         message = 'Il nome deve avere massimo 45 lettere'
-
-    //     }
-
-
-    //     errorName.innerHTML = message;
-    // });
+    name.addEventListener('blur', function(){
+        if(name.value.length <2 && name.value.length != 0){
+            message = 'Il nome deve avere minimo 2 lettere';
+            errorName.className = 'text-danger';
+            name.className = 'form-control border-danger';
+            errorName.innerHTML = message;
+        }else{
+            message = '';
+            name.className = 'form-control border-secondary-subtle';
+            errorName.innerHTML = message;
+        }
+        if(name.value.length > 45){
+            message = 'Il nome deve avere massimo 45 lettere';
+            errorName.className = 'text-danger';
+            name.className = 'form-control border-danger';
+            errorName.innerHTML = message;
+        }
+    });
+    surname.addEventListener('blur', function(){
+        if(surname.value.length <2 && surname.value.length != 0){
+            message = 'Il cognome deve avere minimo 2 lettere';
+            errorSurname.className = 'text-danger';
+            surname.className = 'form-control border-danger';
+            errorSurname.innerHTML = message;
+        }else{
+            message = '';
+            surname.className = 'form-control border-secondary-subtle';
+            errorSurname.innerHTML = message;
+        }
+        if(surname.value.length > 45){
+            message = 'Il cognome deve avere massimo 45 lettere';
+            errorSurname.className = 'text-danger';
+            surname.className = 'form-control border-danger';
+            errorSurname.innerHTML = message;
+        }
+    });
 
     password.addEventListener('blur', function(){
         let correctPasswordLength =validatePasswordLength(password.value);
