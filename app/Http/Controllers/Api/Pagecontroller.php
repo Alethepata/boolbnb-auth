@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Message;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
+
 
 class Pagecontroller extends Controller
 {
@@ -41,23 +43,23 @@ class Pagecontroller extends Controller
         return response()->json(compact('services'));
     }
 
-    public function searchApartments( $latitude, $longitude, $radius, $num_rooms = null, $num_beds = null, $services = null)
+    public function searchApartments($latitude, $longitude, $radius, $num_rooms = null, $num_beds = null, $services = null)
     {
 
 
 
-        if($num_rooms != null && $num_beds != null){
+        if ($num_rooms != null && $num_beds != null) {
             // var_dump('if stanze letti');
             $query = Apartment::where('rooms', '>=', $num_rooms)
-            ->where('beds', '>=', $num_beds);
-            if ($services != null ) {
+                ->where('beds', '>=', $num_beds);
+            if ($services != null) {
                 // var_dump('if servizi eseguito');
                 $servicesArray = explode(',', $services);
                 $query->whereHas('services', function ($subquery) use ($servicesArray) {
                     $subquery->whereIn('services.id', $servicesArray);
                 });
             }
-        }else{
+        } else {
             // var_dump('if all');
             $query = Apartment::query();
             // var_dump($query);
@@ -100,5 +102,21 @@ class Pagecontroller extends Controller
 
             return response()->json(compact('filteredApartments'));
         }
+    }
+
+    public function sendMessage($apartment_id, $email, $message)
+    {
+
+        $new_message = new Message();
+
+        $new_message->apartment_id = $apartment_id;
+        $new_message->email = $email;
+        $new_message->message = $message;
+
+        $new_message->save();
+
+        $success = true;
+
+        return response()->json(compact('success'));
     }
 }
