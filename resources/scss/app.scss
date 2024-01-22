@@ -1,48 +1,31 @@
 @import '~bootstrap/scss/bootstrap';
 
-header{
-    width: 100%;
+header {
     height: 60px;
-
-    .logo-header{
-        width: 300px;
-        height: 100%;
-            img{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-    }
-    .log-out-button{
-        height: 50px;
-        position: relative;
-        background-color: #ff7675;
-        border-radius: 5px;
-        box-shadow: #a04949 0px 4px 0px 0px;
-        padding: 15px 30px;
-        background-repeat: no-repeat;
-        cursor: pointer;
-        color: #fff;
-        border: none;
-        font-size: 18px;
-        text-align: center;
-        transition: all 0.3s ease-in-out;
-        z-index: 1;
-        overflow: hidden;
-        &::before{
-            content: "";
-            background-color: rgb(248, 50, 93);
-            width: 0;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            transition: width 700ms ease-in-out;
-            display: inline-block;
-        }
-        &:hover::before{
+    background-color:#F6F1F1;
+    border-bottom: 1px solid #146C94 ;
+    .logo {
+        a{
             width: 100%;
+            img {
+                width: 20%;
+                padding: 3px;
+            }
+        }
+
+    }
+    .navbar {
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                color: #146C94;
+                a {
+                    text-decoration: none;
+                    color: #146C94;
+                }
+            }
         }
     }
 }

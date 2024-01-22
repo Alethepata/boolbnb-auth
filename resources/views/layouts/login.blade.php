@@ -15,12 +15,6 @@
 </head>
 
 <body>
-    @include('auth.partials.header')
-    @include('admin.partials.navbar')
-
-    <div class="main-wrapper">
-        @yield('content')
-    </div>
+    @include('auth.partials.headerLogin')
+    @yield('content')
 </body>
-
-</html>
