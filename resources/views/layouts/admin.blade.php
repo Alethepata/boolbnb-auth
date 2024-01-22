@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @include('auth.partials.header')
+    @include('admin.partials.header')
     @include('admin.partials.navbar')
 
     <div class="container main-wrapper">
