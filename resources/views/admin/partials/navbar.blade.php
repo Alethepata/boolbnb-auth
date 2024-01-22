@@ -7,6 +7,8 @@
                     Appartamenti</a></li>
             <li class="mb-3 mx-3"><a href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-folder-plus"></i>
                     Nuovo Appartamento</a></li>
+            <li class="mb-3 mx-3"><a href="{{ route('admin.messages.index') }}"><i class="fa-solid fa-envelope"></i>
+                    Messaggi</a></li>
         </ul>
     </nav>
 </aside>

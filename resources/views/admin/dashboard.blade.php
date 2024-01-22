@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
 
         <h1>Home Dashboard</h1>
 
@@ -39,5 +38,4 @@
             voluptatibus tempora delectus. Veniam fugiat, labore placeat ut consequatur sint quam itaque amet in voluptates
             rerum! Ratione fugit assumenda nobis accusantium doloribus! Eius itaque in maxime error odit, non quos deserunt
             possimus velit, architecto distinctio optio fuga eligendi mollitia? Optio!</p>
-    </div>
 @endsection

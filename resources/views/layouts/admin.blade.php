@@ -18,7 +18,7 @@
     @include('admin.partials.header')
     @include('admin.partials.navbar')
 
-    <div class="main-wrapper">
+    <div class="container main-wrapper">
         @yield('content')
     </div>
 </body>
