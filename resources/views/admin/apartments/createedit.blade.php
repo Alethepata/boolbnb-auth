@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
 
         <h1>{{ $title }}</h1>
 
@@ -167,7 +166,6 @@
 
         </form>
         <button type="submit" class="btn btn-primary" id="btn">Salva</button>
-    </div>
 
     <script>
         const apiKey = '5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';

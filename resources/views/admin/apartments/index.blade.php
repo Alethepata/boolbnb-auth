@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="index w-100 p-5">
+
         <h1>Lista appartamenti</h1>
         <table class="table w-100">
             <thead>
@@ -35,5 +35,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+
 @endsection

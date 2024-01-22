@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
 
         <h1>{{ $apartment->title }}</h1>
 
@@ -35,5 +34,4 @@
                 <span>Non ci sono servizi aggiuntivi</span>
             @endforelse
         </div>
-    </div>
 @endsection
