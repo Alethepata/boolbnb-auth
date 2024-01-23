@@ -27,7 +27,16 @@ header {
                 }
             }
         }
+
     }
+    .log-out-button{
+            margin: 20px;
+            color: #146C94;
+            border: 1px solid #146C94;
+            &:hover {
+                background-color: #19A7CE;
+            }
+        }
 }
 
 .main-wrapper{
@@ -45,19 +54,16 @@ header {
 
 aside{
     background-color: lightgray;
-    color: black;
-    ul{
-        list-style: none;
-        padding-top:30px;
+    color: #146C94;
         a{
-            color:black;
+            color:#146C94;
             text-decoration: none;
             &:hover{
                 text-decoration: underline;
             }
         }
     }
-}
+
 
 .image{
     width: 700px;
