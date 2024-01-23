@@ -282,18 +282,18 @@
             email.className = 'form-control border-secondary-subtle';
             errorEmail.innerHTML = message;
         }
-        if(password.value === passwordConfirm.value){
-            message ='';
-            password.className = 'form-control border-secondary-subtle';
-            passwordConfirm.className = 'form-control border-secondary-subtle';
-            result.innerHTML = message;
-        }else{
-            message ='Le password non corrispondono';
-            result.className = 'text-danger';
-            password.className = 'form-control border-danger';
-            passwordConfirm.className = 'form-control border-danger';
-            result.innerHTML = message;
-        }
+        // if(password.value === passwordConfirm.value && password.value != 0 && passwordConfirm.value != 0){
+        //     message ='';
+        //     password.className = 'form-control border-secondary-subtle';
+        //     passwordConfirm.className = 'form-control border-secondary-subtle';
+        //     result.innerHTML = message;
+        // }else{
+        //     message ='Le password non corrispondono';
+        //     result.className = 'text-danger';
+        //     password.className = 'form-control border-danger';
+        //     passwordConfirm.className = 'form-control border-danger';
+        //     result.innerHTML = message;
+        // }
 
         if(password.value.length > 0 && passwordConfirm.value.length > 0 && email.value.length > 0 && password.value == passwordConfirm.value){
             form.submit()
