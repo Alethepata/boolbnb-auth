@@ -10,13 +10,15 @@ use App\Models\Message;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
 
+//use Illuminate\Database\Query\Builder;
+
 
 class Pagecontroller extends Controller
 {
 
     public function apartments()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::join('apartment_sponsor', 'apartments.id', '=', 'apartment_sponsor.apartment_id')->get();
 
         foreach ($apartments as $apartment) {
             $apartment->img = asset('storage/' . $apartment->img);
