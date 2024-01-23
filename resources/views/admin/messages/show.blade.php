@@ -12,6 +12,9 @@
           <p class="card-text">{{$message->message}}</p>
         </div>
         <div class="card-footer text-body-secondary">
+            @php
+                $date = $message->created_at->format('d/m/Y H:i')
+            @endphp
             {{$date}}
         </div>
     </div>

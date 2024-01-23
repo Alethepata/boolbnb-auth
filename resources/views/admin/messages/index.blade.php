@@ -15,6 +15,9 @@
         @foreach ($messages as $message)
             <tr>
                 <td>{{$message->email}}</td>
+                @php
+                    $date = $message->created_at->diffForHumans()
+                @endphp
                 <td>{{$date}}</td>
                 <td>{{$message->apartment->title}}</td>
                 <td>
