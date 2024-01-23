@@ -201,7 +201,7 @@
         if(correctPassword){
             message ='';
             password.className = 'form-control border-secondary-subtle';
-            passwordConfirm.className = 'form-control border-danger';
+            passwordConfirm.className = 'form-control border-secondary-subtle';
             //form.submit()
 
         }else{
@@ -243,7 +243,7 @@
             message ='';
             dateOfBirth.className = 'form-control border-success';
             }else{
-                message ='minorenne';
+                message ='Per registrarti devi essere maggiorenne';
                 errorDate.className = 'text-danger';
                 dateOfBirth.className = 'form-control border-danger';
             }
@@ -253,7 +253,7 @@
     btn.addEventListener('click', function(){
 
         if (password.value.length === 0 ){
-            message= 'compilare campo';
+            message= 'Compilare campo';
             result.className = 'text-danger';
             password.className = 'form-control border-danger';
             result.innerHTML = message;
@@ -263,7 +263,7 @@
             result.innerHTML = message;
         }
         if (passwordConfirm.value.length === 0 ){
-            message= 'compilare campo';
+            message= 'Compilare campo';
             errorPasswordConfirm.className = 'text-danger';
             passwordConfirm.className = 'form-control border-danger';
             errorPasswordConfirm.innerHTML = message;
@@ -273,7 +273,7 @@
             errorPasswordConfirm.innerHTML = message;
         }
         if (email.value.length === 0 ){
-            message= 'compilare campo';
+            message= 'Compilare campo';
             errorEmail.className = 'text-danger';
             email.className = 'form-control border-danger';
             errorEmail.innerHTML = message;
@@ -282,8 +282,20 @@
             email.className = 'form-control border-secondary-subtle';
             errorEmail.innerHTML = message;
         }
+        if(password.value === passwordConfirm.value){
+            message ='';
+            password.className = 'form-control border-secondary-subtle';
+            passwordConfirm.className = 'form-control border-secondary-subtle';
+            result.innerHTML = message;
+        }else{
+            message ='Le password non corrispondono';
+            result.className = 'text-danger';
+            password.className = 'form-control border-danger';
+            passwordConfirm.className = 'form-control border-danger';
+            result.innerHTML = message;
+        }
 
-        if(password.value.length > 0 && passwordConfirm.value.length > 0 && email.value.length > 0){
+        if(password.value.length > 0 && passwordConfirm.value.length > 0 && email.value.length > 0 && password.value == passwordConfirm.value){
             form.submit()
         }
 
