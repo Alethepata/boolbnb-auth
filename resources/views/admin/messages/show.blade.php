@@ -12,7 +12,7 @@
           <p class="card-text">{{$message->message}}</p>
         </div>
         <div class="card-footer text-body-secondary">
-            {{$message->created_at}}
+            {{$date}}
         </div>
     </div>
 </div>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class MessageController extends Controller
 {
     /**
@@ -15,7 +17,12 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::orderBy('id', 'desc')->where('apartment_id', Auth::id())->get();
-        return view('admin.messages.index', compact('messages'));
+        Carbon::setLocale('it');
+
+        $date_select = Message::select('messages.created_at')->get();
+        $created_at = $date_select[0]['created_at'];
+        $date =  $created_at->diffForHumans();
+        return view('admin.messages.index', compact('messages','date'));
     }
 
     /**
@@ -41,7 +48,11 @@ class MessageController extends Controller
     {
         if (Auth::check() && Auth::id() === $message->apartment_id) {
 
-            return view('admin.messages.show', compact('message'));
+            $date_select = Message::select('messages.created_at')->get();
+            $created_at = $date_select[0]['created_at'];
+            $date =  $created_at->format('d/m/Y H:i');
+
+            return view('admin.messages.show', compact('message','date'));
         } else {
 
             return abort(404, 'Non sei autorizzato a visualizzare questo appartamento.');

@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th scope="col">Email</th>
-        <th scope="col">Messaggio</th>
+        <th scope="col">Data</th>
         <th scope="col">In riferimento a</th>
         <th scope="col"></th>
       </tr>
@@ -15,7 +15,7 @@
         @foreach ($messages as $message)
             <tr>
                 <td>{{$message->email}}</td>
-                <td>{{$message->message}}</td>
+                <td>{{$date}}</td>
                 <td>{{$message->apartment->title}}</td>
                 <td>
                     <a class="btn btn-dark" href="{{route('admin.messages.show', $message)}}"><i
@@ -25,6 +25,7 @@
         @endforeach
     </tbody>
   </table>
+
 
 
 @endsection
