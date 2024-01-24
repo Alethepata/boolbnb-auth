@@ -65,10 +65,9 @@ class PaymentController extends Controller
         }else{
             return redirect()->route('admin.sponsors.index')->with('error', 'Pagamento non riuscito');
         }
+    }
 
-
-
-
-
+    public function Success(Request $request){
+        return view('admin.sponsors.succes')
     }
 }

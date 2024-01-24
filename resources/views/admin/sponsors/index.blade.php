@@ -25,7 +25,7 @@
 {{-- Form --}}
 <div class="row row-cols-1">
     <div class="col">
-        <form method="POST" action="{{ route('admin.sponsors.store') }}">
+        <form method="GET" action="{{ route('dropin') }}">
             @csrf
             {{-- Piani --}}
             <div class="row row-cols-1">
