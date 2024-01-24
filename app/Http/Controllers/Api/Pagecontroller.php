@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Message;
+use App\Models\View;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
 
@@ -120,5 +121,16 @@ class Pagecontroller extends Controller
         $success = true;
 
         return response()->json(compact('success'));
+    }
+
+    public function saveView($apartment_id, $ip_address)
+    {
+
+        $new_view = new View();
+
+        $new_view->apartment_id = $apartment_id;
+        $new_view->ip_address = $ip_address;
+
+        $new_view->save();
     }
 }

@@ -25,3 +25,4 @@ Route::get('/apartments/apartment-detail/{slug}', [PageController::class, 'apart
 Route::get('/services', [PageController::class, 'services']);
 Route::get('/apartments/search-apartments/{latitude}/{longitude}/{radius}/{num_rooms?}/{num_beds?}/{services?}', [PageController::class, 'searchApartments']);
 Route::get('/send-message/{apartment_id}/{email}/{message}', [PageController::class, 'sendMessage']);
+Route::get('/save-view/{apartment_id}/{ip_address}', [PageController::class, 'saveView']);
