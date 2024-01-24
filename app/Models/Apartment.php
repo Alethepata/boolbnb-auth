@@ -43,6 +43,10 @@ class Apartment extends Model
     {
         return $this->hasMany(Message::class);
     }
+    public function Views()
+    {
+        return $this->hasMany(View::class);
+    }
 
     public static function generateSlug($string)
     {
