@@ -126,11 +126,21 @@ class Pagecontroller extends Controller
     public function saveView($apartment_id, $ip_address)
     {
 
-        $new_view = new View();
+        $views = View::all();
 
-        $new_view->apartment_id = $apartment_id;
-        $new_view->ip_address = $ip_address;
+        $ip_addresses = [];
 
-        $new_view->save();
+        foreach ($views as $view) {
+            array_push($ip_addresses, $view->ip_address);
+        }
+
+        if (!in_array($ip_address, $ip_addresses)) {
+            $new_view = new View();
+
+            $new_view->apartment_id = $apartment_id;
+            $new_view->ip_address = $ip_address;
+
+            $new_view->save();
+        }
     }
 }
