@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\BraintreeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ use App\Http\Controllers\Admin\PaymentController;
 |
 */
 
+Route::get('/dropin', [BraintreeController::class, 'showDropInForm'])->name('dropin');
+Route::post('/process-payment', [BraintreeController::class, 'processPayment'])->name('process-payment');
+Route::get('/payment-success', [BraintreeController::class, 'showSuccess'])->name('payment-success');
 
 
 Route::get('/', [PageController::class, 'index'])->name('home');
