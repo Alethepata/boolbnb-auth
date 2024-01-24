@@ -149,6 +149,15 @@ class ViewsTableSeeder extends Seeder
 
                 "date" => '2023-12-25',
                 "ip_address" => '151.54.149.80',
+            ],
+            [
+                "date" => '2024-01-14',
+                "ip_address" => '151.54.149.81',
+            ],
+            [
+
+                "date" => '2023-01-22',
+                "ip_address" => '151.54.149.82',
             ]
         ];
 
