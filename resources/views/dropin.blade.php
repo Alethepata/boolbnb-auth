@@ -58,9 +58,11 @@
                     if (response.success) {
                         // Esegui il redirect alla rotta /payment-success
                         window.location.href = '/payment-success?sponsor=' + sponsor + '&apartment=' + apartment;
+                    }else{
+                        window.location.href = '/payment-error';
                     }
                 } else {
-                    console.error('Errore nella richiesta:', xhr.status);
+                    window.location.href = '/payment-error';
                 }
             }
         };

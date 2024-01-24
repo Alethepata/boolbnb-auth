@@ -23,6 +23,7 @@ use App\Http\Controllers\BraintreeController;
 Route::get('/dropin', [BraintreeController::class, 'showDropInForm'])->name('dropin');
 Route::post('/process-payment', [BraintreeController::class, 'processPayment'])->name('process-payment');
 Route::get('/payment-success', [BraintreeController::class, 'showSuccess'])->name('payment-success');
+Route::get('/payment-error', [BraintreeController::class, 'showError'])->name('payment-error');
 
 
 Route::get('/', [PageController::class, 'index'])->name('home');

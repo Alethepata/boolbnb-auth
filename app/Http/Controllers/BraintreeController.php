@@ -64,7 +64,7 @@ class BraintreeController extends Controller
             return response()->json(['success' => true, 'message' => 'Pagamento riuscito']);
         } else {
             // Se il pagamento fallisce, gestisci di conseguenza
-            return view('error', ['message' => 'Pagamento fallito']);
+            return response()->json(['success' => false, 'message' => 'Pagamento fallito']);
         }
     }
 
@@ -72,10 +72,18 @@ class BraintreeController extends Controller
         $apartment = $request->query('apartment');
         $sponsor = $request->query('sponsor');
 
-        return view('admin.sponsors.succes', [
+        return view('admin.sponsors.success', [
             'message' => 'Pagamento riuscito!',
             'sponsor' => Sponsor::find($sponsor),
             'apartment' => Apartment::find($apartment),
+        ]);
+    }
+    public function showError(Request $request){
+        $apartment = $request->query('apartment');
+        $sponsor = $request->query('sponsor');
+
+        return view('admin.sponsors.error', [
+            'message' => 'Pagamento Fallito :(',
         ]);
     }
 }
