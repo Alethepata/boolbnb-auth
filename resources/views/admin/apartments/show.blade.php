@@ -39,11 +39,6 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-    {{-- GRAFICO MESSAGGI --}}
-    <div>
-        <canvas id="myChart2"></canvas>
-    </div>
-
 
 
     {{-- SCRIPT DEL GRAFICO --}}
@@ -56,27 +51,33 @@
         const views = @json($apartment->views);
         const messages = @json($apartment->messages);
 
-        // Inizializza un array di 12 zeri
+        // Inizializzo 2 array di 12 zeri
         let dataView = new Array(12).fill(0);
         let dataMessages = new Array(12).fill(0);
 
+        function fillData(arrayData, datas) {
+            // Ciclo messaggi / views
+            for (let data of datas) {
+                // Ottengo la data della view o messaggio
+                let date = new Date(data.created_at);
 
+                // Calcolo l'indice nell array di dati in base al mese e all'anno corrente
+                let now = new Date();
+                let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
+                let index = 11 - months;
 
-        // Per ogni visualizzazione
-        for (let view of views) {
-            // Ottieni la data della visualizzazione
-            let date = new Date(view.date);
+                // Incremento il conteggio per quel mese
+                if (index >= 0 && index < 12) {
+                    arrayData[index]++;
+                }
 
-            // Calcola l'indice nel tuo array di dati in base al mese e all'anno corrente
-            let now = new Date();
-            let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
-            let index = 11 - months;
-
-            // Incrementa il conteggio per quel mese
-            if (index >= 0 && index < 12) {
-                dataView[index]++;
+                return arrayData;
             }
         }
+
+        fillData(dataView, views);
+        fillData(dataMessages, messages);
+
 
 
 
@@ -118,56 +119,44 @@
                     formatDate(0),
                 ],
                 datasets: [{
-                    label: 'Visualizzazioni',
-                    data: [
-                        dataView[0],
-                        dataView[1],
-                        dataView[2],
-                        dataView[3],
-                        dataView[4],
-                        dataView[5],
-                        dataView[6],
-                        dataView[7],
-                        dataView[8],
-                        dataView[9],
-                        dataView[10],
-                        dataView[11],
-                        dataView[12],
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+                        label: 'Visualizzazioni',
+                        data: [
+                            dataView[0],
+                            dataView[1],
+                            dataView[2],
+                            dataView[3],
+                            dataView[4],
+                            dataView[5],
+                            dataView[6],
+                            dataView[7],
+                            dataView[8],
+                            dataView[9],
+                            dataView[10],
+                            dataView[11],
+                            dataView[12],
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Messaggi',
+                        data: [
+                            dataMessages[0],
+                            dataMessages[1],
+                            dataMessages[2],
+                            dataMessages[3],
+                            dataMessages[4],
+                            dataMessages[5],
+                            dataMessages[6],
+                            dataMessages[7],
+                            dataMessages[8],
+                            dataMessages[9],
+                            dataMessages[10],
+                            dataMessages[11],
+                            dataMessages[12],
+                        ],
+                        borderWidth: 1
                     }
-                }
-            }
-        });
-
-        // GRAFICO MESSAGGI
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: [formatDate(11),
-                    formatDate(10),
-                    formatDate(9),
-                    formatDate(8),
-                    formatDate(7),
-                    formatDate(6),
-                    formatDate(5),
-                    formatDate(4),
-                    formatDate(3),
-                    formatDate(2),
-                    formatDate(1),
-                    formatDate(0),
-                ],
-                datasets: [{
-                    label: 'Visualizzazioni',
-                    data: [],
-                    borderWidth: 1
-                }]
+                ]
             },
             options: {
                 scales: {
