@@ -68,6 +68,6 @@ class PaymentController extends Controller
     }
 
     public function Success(Request $request){
-        return view('admin.sponsors.succes')
+        return view('admin.sponsors.succes');
     }
 }
