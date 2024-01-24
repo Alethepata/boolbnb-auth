@@ -35,9 +35,13 @@
         @endforelse
     </div>
 
-    {{-- GRAFICO --}}
+    {{-- GRAFICO VISUALIZZAZIONI --}}
     <div>
         <canvas id="myChart"></canvas>
+    </div>
+    {{-- GRAFICO MESSAGGI --}}
+    <div>
+        <canvas id="myChart2"></canvas>
     </div>
 
 
@@ -48,110 +52,119 @@
 
     <script>
         const ctx = document.getElementById('myChart');
-
-
-        // FORMAT VIEWS
+        const ctx2 = document.getElementById('myChart2');
         const views = @json($apartment->views);
+        const messages = @json($apartment->messages);
 
-        console.log(views);
+        // Inizializza un array di 12 zeri
+        let dataView = new Array(12).fill(0);
+        let dataMessages = new Array(12).fill(0);
 
-        const viewGen = 0
-        const viewFeb = 0
-        const viewMar = 0
-        const viewApr = 0
-        const viewMag = 0
-        const viewGiu = 0
-        const viewLug = 0
-        const viewAgo = 0
-        const viewSet = 0
-        const viewOtt = 0
-        const viewNov = 0
-        const viewDic = 0
 
-        for (let i = 0; i < views.length; i++) {
 
-            viewDate = new Date(views[i].date).getMonth();
+        // Per ogni visualizzazione
+        for (let view of views) {
+            // Ottieni la data della visualizzazione
+            let date = new Date(view.date);
 
-            console.log(viewDate);
+            // Calcola l'indice nel tuo array di dati in base al mese e all'anno corrente
+            let now = new Date();
+            let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
+            let index = 11 - months;
 
-            switch (viewDate) {
-                case 0:
-                    viewGen += 1;
-                    break;
-                case 1:
-                    viewFeb += 1;
-                    break;
-                case 2:
-                    viewMar += 1;
-                    break;
-                case 3:
-                    viewApr += 1;
-                    break;
-                case 4:
-                    viewMag += 1;
-                    break;
-                case 5:
-                    viewGiu += 1;
-                    break;
-                case 6:
-                    viewLug += 1;
-                    break;
-                case 7:
-                    viewAgo += 1;
-                    break;
-                case 8:
-                    viewSet += 1;
-                    break;
-                case 9:
-                    viewOtt += 1;
-                    break;
-                case 10:
-                    viewNov += 1;
-                    break;
-                case 11:
-                    viewDic += 1;
-                    break;
+            // Incrementa il conteggio per quel mese
+            if (index >= 0 && index < 12) {
+                dataView[index]++;
             }
         }
 
 
-        // FORMAT DATA
-        const currentDate = new Date();
 
-        let month;
+        // FORMAT DATE
+        let currentDate;
+        let monthYear;
 
         function formatDate(n) {
 
+            currentDate = new Date();
+
             currentDate.setMonth(currentDate.getMonth() - n);
 
-            month = currentDate.toLocaleString('it-IT', {
+            monthYear = currentDate.toLocaleString('it-IT', {
                 month: 'short',
                 year: 'numeric'
             })
 
-            return month;
+            return monthYear;
         }
 
 
-        // GRAFICO
+
+        // GRAFICO VISUALIZZAZIONI
         new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: [formatDate(11),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
-                    formatDate(-1),
+                    formatDate(10),
+                    formatDate(9),
+                    formatDate(8),
+                    formatDate(7),
+                    formatDate(6),
+                    formatDate(5),
+                    formatDate(4),
+                    formatDate(3),
+                    formatDate(2),
+                    formatDate(1),
+                    formatDate(0),
                 ],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Visualizzazioni',
+                    data: [
+                        dataView[0],
+                        dataView[1],
+                        dataView[2],
+                        dataView[3],
+                        dataView[4],
+                        dataView[5],
+                        dataView[6],
+                        dataView[7],
+                        dataView[8],
+                        dataView[9],
+                        dataView[10],
+                        dataView[11],
+                        dataView[12],
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // GRAFICO MESSAGGI
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: [formatDate(11),
+                    formatDate(10),
+                    formatDate(9),
+                    formatDate(8),
+                    formatDate(7),
+                    formatDate(6),
+                    formatDate(5),
+                    formatDate(4),
+                    formatDate(3),
+                    formatDate(2),
+                    formatDate(1),
+                    formatDate(0),
+                ],
+                datasets: [{
+                    label: 'Visualizzazioni',
                     data: [],
                     borderWidth: 1
                 }]
