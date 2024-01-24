@@ -20,12 +20,17 @@
                     </div>
                 @endif
             </div>
+            <div class="col">
+                <div id="alert">
+                    <p id="alert-message"></p>
+                </div>
+            </div>
         </div>
 
 {{-- Form --}}
 <div class="row row-cols-1">
     <div class="col">
-        <form method="GET" action="{{ route('dropin') }}">
+        <form method="GET" action="{{ route('dropin') }}" id="form">
             @csrf
             {{-- Piani --}}
             <div class="row row-cols-1">
@@ -61,14 +66,14 @@
                 </div>
 
             </div>
-            {{-- Button --}}
-            <div class="row justify-content-center mt-3" id="submitButtonRow" style="display:none;">
-                <div class="col-1">
-                    <button type="submit" class="btn btn-primary" >Invia</button>
-                </div>
-            </div>
 
         </form>
+        {{-- Button --}}
+        <div class="row justify-content-center mt-3" id="submitButtonRow" style="display:none;">
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary" id="btn">Invia</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -85,7 +90,66 @@
         } else {
             submitButtonRow.style.display = 'none';
         }
+
         });
+
+
+        let sponsorButton1 = document.getElementById('sponsor-button-1');
+        let sponsorButton2 = document.getElementById('sponsor-button-2');
+        let sponsorButton3 = document.getElementById('sponsor-button-3');
+        let alert = document.getElementById('alert');
+        let alertMessage = document.getElementById('alert-message');
+        let form = document.getElementById('form');
+        let btn = document.getElementById('btn');
+
+        let message;
+        const sponsor = [];
+
+        sponsorButton1.addEventListener('click', function(){
+
+            message = '';
+                alertMessage.innerHTML = message;
+                alert.className = '';
+
+            if(! sponsor.includes(this.value)) {
+                sponsor.pop();
+                sponsor.push(this.value);
+            }
+
+        })
+
+        sponsorButton2.addEventListener('click', function(){
+            message = '';
+                alertMessage.innerHTML = message;
+                alert.className = '';
+            if(! sponsor.includes(this.value)) {
+                sponsor.pop();
+                sponsor.push(this.value);
+            }
+        })
+
+        sponsorButton3.addEventListener('click', function(){
+            message = '';
+                alertMessage.innerHTML = message;
+                alert.className = '';
+            if(! sponsor.includes(this.value)) {
+                sponsor.pop();
+                sponsor.push(this.value);
+            }
+
+        })
+
+        btn.addEventListener('click', function(){
+            if(sponsor.length > 0){
+            form.submit();
+            }else{
+                message = 'Selezionare lo sponsor';
+                alertMessage.innerHTML = message;
+                alert.className = 'alert alert-danger';
+            }
+        })
+
+
     </script>
 
 
