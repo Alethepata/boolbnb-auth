@@ -9,7 +9,7 @@
                 <th scope="col">Appartamento</th>
                 <th scope="col">Indirizzo</th>
                 <th scope="col">Sponsorizzazione</th>
-                <th scope="col"></th>
+                <th scope="col">Modifica</th>
             </tr>
         </thead>
         <tbody>
@@ -18,9 +18,18 @@
                     <td>{{ $apartment->id }}</td>
                     <td>{{ $apartment->title }}</td>
                     <td>{{ $apartment->address }}</td>
-                    @foreach ($apartment->sponsors as $sponsor)
-                        {{ $sponsor->plan_title }}
-                    @endforeach
+                    <td>
+                        @if (count($apartment->sponsors) > 0)
+                            @foreach ($apartment->sponsors as $sponsor)
+                                @if (!empty($sponsor->plan_title))
+                                <span class="badge rounded-pill text-bg-success">{{ $sponsor->plan_title }}</span>
+                                @endif
+                            @endforeach
+                        @else
+                            <span class="badge rounded-pill text-bg-warning">Non sponsorizzato</span>
+                        @endif
+                    </td>
+
 
                     <td>
                         <a class="btn btn-dark" href="{{ route('admin.apartments.show', $apartment) }}"><i
