@@ -35,7 +35,9 @@
         @endforelse
     </div>
 
-    {{-- GRAFICO VISUALIZZAZIONI --}}
+    {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
+
+    <h1>Statistiche dell appartamento</h1>
     <div>
         <canvas id="myChart"></canvas>
     </div>
@@ -51,32 +53,43 @@
         const views = @json($apartment->views);
         const messages = @json($apartment->messages);
 
+        console.log(views);
+
         // Inizializzo 2 array di 12 zeri
         let dataView = new Array(12).fill(0);
         let dataMessages = new Array(12).fill(0);
 
-        function fillData(arrayData, datas) {
-            // Ciclo messaggi / views
-            for (let data of datas) {
-                // Ottengo la data della view o messaggio
-                let date = new Date(data.created_at);
+        // Ciclo  views
+        for (let view of views) {
+            // Ottengo la data della view
+            let date = new Date(view.date);
 
-                // Calcolo l'indice nell array di dati in base al mese e all'anno corrente
-                let now = new Date();
-                let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
-                let index = 11 - months;
+            // Calcolo l'indice nell array di dati in base al mese e all'anno corrente
+            let now = new Date();
+            let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
+            let index = 11 - months;
 
-                // Incremento il conteggio per quel mese
-                if (index >= 0 && index < 12) {
-                    arrayData[index]++;
-                }
-
-                return arrayData;
+            // Incremento il conteggio per quel mese
+            if (index >= 0 && index < 12) {
+                dataView[index]++;
             }
         }
 
-        fillData(dataView, views);
-        fillData(dataMessages, messages);
+        // Ciclo messaggi
+        for (let message of messages) {
+            // Ottengo la data del messaggio
+            let date = new Date(message.created_at);
+
+            // Calcolo l'indice nell array di dati in base al mese e all'anno corrente
+            let now = new Date();
+            let months = (now.getFullYear() - date.getFullYear()) * 12 + now.getMonth() - date.getMonth();
+            let index = 11 - months;
+
+            // Incremento il conteggio per quel mese
+            if (index >= 0 && index < 12) {
+                dataMessages[index]++;
+            }
+        }
 
 
 
@@ -161,7 +174,11 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
                     }
                 }
             }
