@@ -9,5 +9,8 @@ class View extends Model
 {
     use HasFactory;
 
-
+    public function Apartment()
+    {
+        return $this->belongsTo(Apartment::class);
+    }
 }
