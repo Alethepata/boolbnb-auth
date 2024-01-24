@@ -139,6 +139,7 @@ class Pagecontroller extends Controller
 
             $new_view->apartment_id = $apartment_id;
             $new_view->ip_address = $ip_address;
+            $new_view->date = date('Y-m-d');
 
             $new_view->save();
         }
