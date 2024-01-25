@@ -75,7 +75,7 @@ class Pagecontroller extends Controller
         // dd($num_rooms, $num_beds, $latitude, $longitude, $radius, $services, $servicesArray);
 
         foreach ($apartments as $apartment) {
-            $apartment->img = asset('storage/' . $apartment->img);
+            $apartment->img = asset($apartment->img);
         }
         $filtredApartments = [];
 

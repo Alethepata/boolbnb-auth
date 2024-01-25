@@ -100,7 +100,7 @@
                 <input type="text" class="form-control" id="longitude" name="longitude"
                     value="{{ old('longitude', $apartment?->longitude) }}">
             </div>
-
+            {{-- immagine --}}
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine *</label>
                 <input type="file" class="form-control" id="image" name="img"
