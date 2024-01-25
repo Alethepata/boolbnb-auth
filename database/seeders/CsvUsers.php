@@ -33,7 +33,7 @@ class CsvUsers extends Seeder
                 'surname' => $record['Cognome'],
                 'date_of_birth' => Carbon::createFromFormat('d/m/y', $record['Data di Nascita'])->format('Y-m-d'),
                 'email' => $record['Email'],
-                'password' => $record['Password'],
+                'password' => bcrypt($record['Password']),
             ]);
         }
     }
