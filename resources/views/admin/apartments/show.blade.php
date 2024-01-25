@@ -37,9 +37,9 @@
 
     {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
 
-    <h1>Statistiche dell appartamento</h1>
-    <div>
-        <canvas id="myChart"></canvas>
+    <h1 class="mt-3">Statistiche dell appartamento</h1>
+    <div >
+        <canvas id="myChart" class="my-5"></canvas>
     </div>
 
 
