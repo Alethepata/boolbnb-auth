@@ -16,7 +16,11 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::orderBy('id', 'desc')->where('apartment_id', Auth::id())->get();
+        $messages = Message::orderBy('id', 'desc')
+                            ->whereHas('apartment', function ($query) {
+                                $query->where('user_id', Auth::id());
+                            })
+                            ->get();
         Carbon::setLocale('it');
         return view('admin.messages.index', compact('messages'));
     }
@@ -42,7 +46,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        if (Auth::check() && Auth::id() === $message->apartment_id) {
+        if (Auth::check() && Auth::id() === $message->apartment->user_id) {
 
             return view('admin.messages.show', compact('message'));
         } else {

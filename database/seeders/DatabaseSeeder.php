@@ -22,12 +22,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UsersTableSeeder::class,
-            ApartmentsTableSeeder::class,
+            // UsersTableSeeder::class,
+            // ApartmentsTableSeeder::class,
+            CsvUsers::class,
+            CsvApartments::class,
             MessagesTableSeeder::class,
             ServicesTableSeeder::class,
             SponsorsTableSeeder::class,
             ApartmentServiceSeeder::class,
+            ApartmentSponsor::class,
             ViewsTableSeeder::class
         ]);
     }

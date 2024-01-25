@@ -46,8 +46,18 @@ class ApartmentController extends Controller
         $new_apartment = new Apartment();
 
         if (array_key_exists('img', $form_data) && $form_data['img'] != "") {
+            // $form_data['img_name'] = $request->file('img')->getClientOriginalName();
+            // $form_data['img'] = Storage::put('uploads', $form_data['img']);
             $form_data['img_name'] = $request->file('img')->getClientOriginalName();
-            $form_data['img'] = Storage::put('uploads', $form_data['img']);
+
+            // Percorso personalizzato nella cartella public/images/assets/apartment_images/
+            $customPath = public_path('images/assets/apartment_images/');
+
+            // Salva l'immagine nella cartella
+            $request->file('img')->move($customPath, $form_data['img_name']);
+
+            // Modifica il percorso nel campo img del form_data
+            $form_data['img'] = 'images/assets/apartment_images/' . $form_data['img_name'];
         }
 
         $new_apartment->fill($form_data);
