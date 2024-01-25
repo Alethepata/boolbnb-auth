@@ -32,6 +32,8 @@ class BraintreeController extends Controller
         ]);
     }
 
+
+
     public function processPayment(Request $request)
     {
         $gateway = new Gateway([
@@ -54,11 +56,27 @@ class BraintreeController extends Controller
             ],
         ]);
 
+        function endingSponsor($value){
+            $dateTime = new \DateTime;
+            $date = $dateTime->format('Y-m-d H:i:s');
+            if($value == 1){
+               $duration = '+ 1 days';
+            }else if($value == 2){
+                $duration = '+ 3 days';
+            }else if($value == 3){
+                $duration = '+ 6 days';
+            }
+            $date_duration = date("Y-m-d H:i:s", strtotime($date.$duration));
+            return $date_duration;
+        }
+
+
         if ($result->success) {
             // Attach tra Sponsor e Apartment
             DB::table('apartment_sponsor')->insert([
                 'apartment_id' => $apartment,
                 'sponsor_id' => $sponsor,
+                'ending_date' => endingSponsor($sponsor),
             ]);
 
             return response()->json(['success' => true, 'message' => 'Pagamento riuscito']);
