@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>{{ $apartment->title }}</h1>
+    <h2>{{ $apartment->title }}</h2>
 
     <p>{{ $apartment->address }}</p>
 

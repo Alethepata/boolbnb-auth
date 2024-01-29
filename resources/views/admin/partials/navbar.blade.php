@@ -13,7 +13,7 @@
                     Sponsor</a></li>
         </ul> --}}
 
-        <div class="row row-cols-5 py-3">
+        <div class="row row-cols-5 row-content">
             <div class="col text-center"><a href="{{ route('admin.home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a></div>
             <div class="col text-center"><a href="{{ route('admin.apartments.index') }}"><i class="fa-solid fa-list"></i> Lista
                 Appartamenti</a></div>

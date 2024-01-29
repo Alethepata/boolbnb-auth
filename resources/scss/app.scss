@@ -1,53 +1,108 @@
 @import '~bootstrap/scss/bootstrap';
 
-header {
-    height: 60px;
-    background-color:#F6F1F1;
-    border-bottom: 1px solid #146C94 ;
-    .logo {
-        width: 20%;
-        max-height: 60px;
-        a{
-            display: block;
-            width: 20%;
-            height: 100%;
-            img {
+.header-content{
+    width: 100%;
+    height: 120px;
+    position: fixed;
+    z-index: 10000;
+    header {
+        height: 70px;
+        width: 100%;
+        background-color: white;
+        .logo {
+            a{
                 width: 100%;
-                height: 100%;
-                object-fit: contain;
-                // padding: 3px;
-            }
-        }
+                img {
+                    width: 70px;
+                }
 
-    }
-    .navbar {
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            li {
-                color: #146C94;
-                a {
-                    text-decoration: none;
+            }
+
+        }
+        .navbar {
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li {
                     color: #146C94;
+                    a {
+                        text-decoration: none;
+                        color: #146C94;
+                    }
+                }
+            }
+
+        }
+        .log-out-button{
+                margin: 20px;
+                color: #146C94;
+                border-radius: 5px;
+                border: 1px solid #146C94;
+                background-color: white;
+                &:hover {
+                    background-color: rgba(25, 167, 206, 0.378);
+                    transition: background-color 0.2s ;
+                }
+            }
+    }
+    aside{
+        background-color: #146C94;
+        color: white;
+        width: 100%;
+        height: 50px;
+        .row-content{
+            line-height: 50px;
+            a{
+                color:white;
+                text-decoration: none;
+                &:hover{
+                    text-decoration: underline;
                 }
             }
         }
 
-    }
-    .log-out-button{
-            margin: 20px;
-            color: #146C94;
-            border-radius: 5px;
-            border: 1px solid #146C94;
-            &:hover {
-                background-color: #19A7CE;
-            }
         }
-}
+
+    }
+    .image{
+        width: 700px;
+        img{
+            width: 100%;
+        }
+    }
+
+
 
 .main-wrapper{
-    height: calc(100vh - 60px);
+    padding-top: 120px;
+    height: calc(100vh - 120px);
+    .form-container{
+        width: 50%;
+        margin: auto;
+        .brown, p, input{
+            color: #724D3F;
+        }
+        .btn-services{
+            border: 1px solid #146C94;
+            color: #146C94;
+            &:focus {
+                background-color: #146C94;
+                color: white;
+            }
+
+        }
+        .btn-submit{
+            color: #146C94;
+            background-color: #146C94;
+            border: 1px solid #146C94;
+            color: white;
+            &:hover {
+              background-color: #724D3F;
+              border: 1px solid #724D3F;
+            }
+        }
+    }
     .form-hidden{
         width: 100%;
         border: none;
@@ -56,25 +111,49 @@ header {
             outline: none;
         }
     }
-}
+    .apartment-content{
+        h4{
+            color: #724D3F;
+        }
+        .apartment{
+            a{
+                text-decoration: none;
+            }
+            .card{
+                width: 300px;
+                position: relative;
+                // &:hover .text-content{
+                //     display: block;
 
-
-aside{
-    background-color: lightgray;
-    color: #146C94;
-        a{
-            color:#146C94;
-            text-decoration: none;
-            &:hover{
-                text-decoration: underline;
+                // }
+                .card-image{
+                    width: 100%;
+                    height: 180px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        box-shadow: 10px 10px 5px rgb(208, 208, 208);
+                        &:hover{
+                            box-shadow: 10px 10px 5px rgba(25, 167, 206, 0.289);
+                        }
+                    }
+                }
+                .text-content{
+                    h5{
+                        color: #146C94;
+                    }
+                }
             }
         }
     }
-
-
-.image{
-    width: 700px;
-    img{
-        width: 100%;
-    }
 }
+
+h1{
+    color: #146C94;
+    text-align: center;
+    margin: 30px 0;
+}
+
+
+

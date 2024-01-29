@@ -15,8 +15,10 @@
 </head>
 
 <body>
-    @include('admin.partials.header')
-    @include('admin.partials.navbar')
+    <div class="header-content">
+        @include('admin.partials.header')
+        @include('admin.partials.navbar')
+    </div>
 
     <div class="container main-wrapper">
         @yield('content')
