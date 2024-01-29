@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Message;
+use App\Models\Result;
 use App\Models\View;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
@@ -22,7 +23,7 @@ class Pagecontroller extends Controller
         $apartments = Apartment::join('apartment_sponsor', 'apartments.id', '=', 'apartment_sponsor.apartment_id')->get();
 
         foreach ($apartments as $apartment) {
-            $apartment->img = asset('storage/' . $apartment->img);
+            $apartment->img = asset($apartment->img);
         }
 
 
@@ -34,7 +35,7 @@ class Pagecontroller extends Controller
 
         $apartment = Apartment::where('slug', $slug)->with('services')->first();
 
-        $apartment->img = asset('storage/' . $apartment->img);
+        $apartment->img = asset($apartment->img);
 
         return response()->json(compact('apartment'));
     }
@@ -75,7 +76,7 @@ class Pagecontroller extends Controller
         // dd($num_rooms, $num_beds, $latitude, $longitude, $radius, $services, $servicesArray);
 
         foreach ($apartments as $apartment) {
-            $apartment->img = asset('storage/' . $apartment->img);
+            $apartment->img = asset($apartment->img);
         }
         $filtredApartments = [];
 
@@ -92,11 +93,12 @@ class Pagecontroller extends Controller
                 $distance = $calculator->getDistance($baseCoordinate, $apartmentCoordinate);
 
                 if ($distance <= $radius * 1000) {
-                    $filteredApartments[] = $apartment;
+                    $result = new Result($apartment, $distance);
+                    $filtredApartments[] = $result;
                 }
             }
 
-            return response()->json(compact('filteredApartments'));
+            return response()->json(compact('filtredApartments'));
         } else {
 
             foreach ($apartments as $apartment) {

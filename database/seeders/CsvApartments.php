@@ -20,41 +20,22 @@ class CsvApartments extends Seeder
     public function run(): void
     {
         // Percorso del file CSV
-        $csvFile = storage_path('app/csv/db_apartments.csv');
+        $csvFile = public_path('csv/db_apartments.csv');
         // $faker = Faker::create();
 
         $imagePaths = glob(public_path('images/assets/apartment_images/*'));
-        // dd($imagePaths);
+        // dd($imagePaths, $randomImagePath);
 
         // Usa la libreria league/csv per leggere il CSV
         $csv = Reader::createFromPath($csvFile, 'r');
         $csv->setHeaderOffset(0); // Imposta la prima riga come header
 
-        // dd($firstRow = $csv->fetchOne());
-        $firstRow = $csv->fetchOne();
 
-        // $coordinates = $this->getCoordinates($firstRow['Indirizzo Completo']);
-            // Adatta questa parte in base alla tua struttura CSV e del database
-            // DB::table('apartments')->insert([
-                //     'user_id' => User::all()->random()->id,
-                //     'title' => $firstRow['Nome Descrittivo'],
-                //     'slug' => Apartment::generateSlug($firstRow['Nome Descrittivo']),
-                //     'rooms' => $firstRow['Numero di Camere'],
-                //     'beds' => $firstRow['Numero di Letti'],
-                //     'bathrooms' => $firstRow['Numero di Bagni'],
-                //     'square_meters' => $firstRow['Metri Quadrati'],
-                //     'address' => $firstRow['Indirizzo Completo'],
-            //     'longitude' => $firstRow['Latitudine'],
-            //     'latitude' => $firstRow['Longitudine'],
-            //     'img_name'=> $firstRow['Nome Descrittivo'],
-            //     'img' => 'https://picsum.photos/200/300',
-            //     'is_visible' => true
-            // ]);
-// $coordinates = $this->getCoordinates($record['Indirizzo Completo']);
-            // Itera sulle righe del CSV e popola il database
-
-            foreach ($csv->getRecords() as $record) {
+        foreach ($csv->getRecords() as $record) {
             $randomImagePath = $imagePaths[array_rand($imagePaths)];
+            $relativeUrl = str_replace(public_path(), '', $randomImagePath);
+            $relativeUrl = str_replace('\\', '/', $relativeUrl);
+            // dd($relativeUrl);
 
 
             DB::table('apartments')->insert([
@@ -68,26 +49,10 @@ class CsvApartments extends Seeder
                 'address' => $record['Indirizzo Completo'],
                 'longitude' => $record['Longitudine'],
                 'latitude' => $record['Latitudine'],
-                'img_name'=> $record['Nome Descrittivo'],
-                'img' => 'assets/images/' . basename($randomImagePath),
+                'img_name' => $record['Nome Descrittivo'],
+                'img' => $relativeUrl,
                 'is_visible' => true
             ]);
         }
     }
-    // private function getCoordinates($address)
-    // {
-    //     $apiUrl = 'https://api.tomtom.com/search/2/geocode/';
-    //     $apiKey = 'key=5SpDBwX41WJf17bsPmyNJnysKu2nuS3l';
-
-    //     $client = new Client();
-    //     $response = $client->get($apiUrl . urlencode($address) . '.json?' . $apiKey);
-
-    //     $json_data = $response->getBody()->getContents();
-    //     $data = json_decode($json_data);
-
-    //     return [
-    //         'lat' => $data->results[0]->position->lat,
-    //         'lon' => $data->results[0]->position->lon,
-    //     ];
-    // }
 }

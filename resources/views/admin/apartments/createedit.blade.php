@@ -17,9 +17,9 @@
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                    @enderror
-                </div>
 
+                @enderror
+            </div>
                 <div class="d-flex">
                     <div class="mb-3">
                         <label for="rooms" class="form-label brown @error('rooms') is-invalid @enderror">Numero di stanze *</label>
