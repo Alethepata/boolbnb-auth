@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Message;
+use App\Models\Result;
 use App\Models\View;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
@@ -92,11 +93,12 @@ class Pagecontroller extends Controller
                 $distance = $calculator->getDistance($baseCoordinate, $apartmentCoordinate);
 
                 if ($distance <= $radius * 1000) {
-                    $filteredApartments[] = $apartment;
+                    $result = new Result($apartment, $distance);
+                    $filtredApartments[] = $result;
                 }
             }
 
-            return response()->json(compact('filteredApartments'));
+            return response()->json(compact('filtredApartments'));
         } else {
 
             foreach ($apartments as $apartment) {
