@@ -5,7 +5,6 @@
     <table class="table w-100">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Appartamento</th>
                 <th scope="col">Indirizzo</th>
                 <th scope="col">Sponsorizzazione</th>
@@ -15,7 +14,6 @@
         <tbody>
             @foreach ($apartments as $apartment)
                 <tr>
-                    <td>{{ $apartment->id }}</td>
                     <td>{{ $apartment->title }}</td>
                     <td>{{ $apartment->address }}</td>
                     <td>
