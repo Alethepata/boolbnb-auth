@@ -17,7 +17,7 @@ class CsvUsers extends Seeder
     public function run(): void
     {
         // Percorso del file CSV
-        $csvFile = storage_path('app/csv/db_utenti.csv');
+        $csvFile = public_path('csv/db_utenti.csv');
         // $faker = Faker::create();
 
         // Usa la libreria league/csv per leggere il CSV

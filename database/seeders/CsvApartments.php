@@ -20,7 +20,7 @@ class CsvApartments extends Seeder
     public function run(): void
     {
         // Percorso del file CSV
-        $csvFile = storage_path('app/csv/db_apartments.csv');
+        $csvFile = public_path('csv/db_apartments.csv');
         // $faker = Faker::create();
 
         $imagePaths = glob(public_path('images/assets/apartment_images/*'));
