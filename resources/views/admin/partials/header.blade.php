@@ -3,7 +3,7 @@
     <div class="container d-flex justify-content-between">
             <div class="logo">
                 <a href="http://localhost:5174/">
-                    <img src="{{ asset('images/assets/Boolbnb_logo.png') }}"  alt="logo">
+                    <img src="{{ asset('images/assets/Boolbnb_logo.webp') }}"  alt="logo">
                 </a>
             </div>
 
