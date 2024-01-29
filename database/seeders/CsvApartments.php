@@ -31,7 +31,7 @@ class CsvApartments extends Seeder
         $csv->setHeaderOffset(0); // Imposta la prima riga come header
 
 
-            foreach ($csv->getRecords() as $record) {
+        foreach ($csv->getRecords() as $record) {
             $randomImagePath = $imagePaths[array_rand($imagePaths)];
             $relativeUrl = str_replace(public_path(), '', $randomImagePath);
             $relativeUrl = str_replace('\\', '/', $relativeUrl);
@@ -49,7 +49,7 @@ class CsvApartments extends Seeder
                 'address' => $record['Indirizzo Completo'],
                 'longitude' => $record['Longitudine'],
                 'latitude' => $record['Latitudine'],
-                'img_name'=> $record['Nome Descrittivo'],
+                'img_name' => $record['Nome Descrittivo'],
                 'img' => $relativeUrl,
                 'is_visible' => true
             ]);

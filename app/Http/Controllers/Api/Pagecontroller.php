@@ -34,7 +34,7 @@ class Pagecontroller extends Controller
 
         $apartment = Apartment::where('slug', $slug)->with('services')->first();
 
-        $apartment->img = asset('storage/' . $apartment->img);
+        $apartment->img = asset($apartment->img);
 
         return response()->json(compact('apartment'));
     }
