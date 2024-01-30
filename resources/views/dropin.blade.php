@@ -17,7 +17,8 @@
         <div class="row row-cols-2">
             <div class="col p-5">
                 <div class="">Stai sponsorizzando <strong>{{ $apartment->title }}</strong> con il piano
-                    <strong>{{ $sponsor->plan_title }}</strong></div>
+                    <strong>{{ $sponsor->plan_title }}</strong>
+                </div>
                 <div>Prezzo: <strong>{{ $sponsor->price }} &euro;</strong></div>
             </div>
             <div class="col">
