@@ -140,6 +140,9 @@ h1{
 .t-desktop {
     .btn-pers {
         background-color: #146C94;
+        &:hover {
+            background-color: #724D3F;
+        }
     }
 }
 

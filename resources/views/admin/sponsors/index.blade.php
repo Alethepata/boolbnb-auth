@@ -71,7 +71,7 @@
                 {{-- Button --}}
                 <div class="row justify-content-center mt-3" id="submitButtonRow" style="display:none;">
                     <div class="send">
-                        <button type="submit" class="btn btn-primary" id="btn">Invia</button>
+                        <button type="submit" class="btn btn-pers" id="btn">Invia</button>
                     </div>
                 </div>
             </div>

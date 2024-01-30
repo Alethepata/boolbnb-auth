@@ -1,3 +1,4 @@
+// Versione Mobile
 .card-m {
     background-color: #146C94;
     display: none;
@@ -25,6 +26,20 @@
     }
 }
 
+// Versione Desktop
+.action-button {
+    a {
+        &:hover {
+            background-color: #724D3F;
+        }
+    }
+    button {
+        &:hover {
+            background-color: #724D3F;
+        }
+    }
+}
+
 @media screen and (max-width: 600px){
     .list {
       display: none;
@@ -34,4 +49,5 @@
     }
 
 }
+
 
