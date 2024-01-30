@@ -1,0 +1,31 @@
+@media screen and (min-width: 600px){
+
+    .c-desktop {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container-select {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .send {
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    .c-all {
+        padding-bottom: 140px;
+    }
+
+    .container-select {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .send {
+        text-align: center;
+    }
+}

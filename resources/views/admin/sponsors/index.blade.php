@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
-    <div class="container">
+    <div class="container c-all">
         <div class="container-fluid text-center my-5">
             <h1>Sponsorizza appartamento</h1>
         </div>
@@ -27,69 +26,70 @@
             </div>
         </div>
 
-{{-- Form --}}
-<div class="row row-cols-1">
-    <div class="col">
-        <form method="GET" action="{{ route('dropin') }}" id="form">
-            @csrf
-            {{-- Piani --}}
-            <div class="row row-cols-1">
-                <div class="col">
-                    <div class="container d-flex justify-content-center my-5">
-                        @foreach ($sponsors as $sponsor)
-                            <div class="card text-center mb-3 mx-3" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $sponsor->plan_title }}</h5>
-                                    <p class="card-text">Durata sponsorizzazione: {{ $sponsor->duration }} ore</p>
-                                    <p class="card-text">Prezzo: {{ $sponsor->price }} &euro;</p>
-                                    <div class="form-check d-flex justify-content-center">
-                                        <input class="form-check-input" type="radio" name="sponsor"
-                                            id="sponsor-button-{{ $sponsor->id }}" value="{{ $sponsor->id }}">
+        {{-- Form --}}
+        <div class="row row-cols-1">
+            <div class="col">
+                <form method="GET" action="{{ route('dropin') }}" id="form">
+                    @csrf
+                    {{-- Piani --}}
+                    <div class="row row-cols-1">
+                        <div class="col">
+                            <div class="container c-desktop  my-5">
+                                @foreach ($sponsors as $sponsor)
+                                    <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $sponsor->plan_title }}</h5>
+                                            <p class="card-text">Durata sponsorizzazione: {{ $sponsor->duration }} ore</p>
+                                            <p class="card-text">Prezzo: {{ $sponsor->price }} &euro;</p>
+                                            <div class="form-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" name="sponsor"
+                                                    id="sponsor-button-{{ $sponsor->id }}" value="{{ $sponsor->id }}">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        @endforeach
+                                @endforeach
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        {{-- Seleziona appartamento --}}
+                        <div class="container-select">
+                            <select class="form-select" aria-label="Default select example" name="apartment"
+                                id="apartmentSelect">
+                                <option selected>Seleziona un appartamento</option>
+                                @foreach ($apartments as $apartment)
+                                    <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+
+                </form>
+                {{-- Button --}}
+                <div class="row justify-content-center mt-3" id="submitButtonRow" style="display:none;">
+                    <div class="send">
+                        <button type="submit" class="btn btn-primary" id="btn">Invia</button>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                {{-- Seleziona appartamento --}}
-                <div class="col-6 offset-3">
-                    <select class="form-select" aria-label="Default select example" name="apartment" id="apartmentSelect">
-                        <option selected>Seleziona un appartamento</option>
-                        @foreach ($apartments as $apartment)
-                            <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
-
-        </form>
-        {{-- Button --}}
-        <div class="row justify-content-center mt-3" id="submitButtonRow" style="display:none;">
-            <div class="col-1">
-                <button type="submit" class="btn btn-primary" id="btn">Invia</button>
-            </div>
         </div>
-    </div>
-</div>
 
     </div>
 
     <script>
-        document.getElementById('apartmentSelect').addEventListener('change', function () {
-        var selectedValue = this.value;
-        var submitButtonRow = document.getElementById('submitButtonRow');
+        document.getElementById('apartmentSelect').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var submitButtonRow = document.getElementById('submitButtonRow');
 
-        // Mostra/nascondi il pulsante in base alla selezione
-        if (selectedValue !== 'Seleziona un appartamento') {
-            submitButtonRow.style.display = 'flex';
-        } else {
-            submitButtonRow.style.display = 'none';
-        }
+            // Mostra/nascondi il pulsante in base alla selezione
+            if (selectedValue !== 'Seleziona un appartamento') {
+                submitButtonRow.style.display = 'flex';
+            } else {
+                submitButtonRow.style.display = 'none';
+            }
 
         });
 
@@ -105,52 +105,48 @@
         let message;
         const sponsor = [];
 
-        sponsorButton1.addEventListener('click', function(){
+        sponsorButton1.addEventListener('click', function() {
 
             message = '';
-                alertMessage.innerHTML = message;
-                alert.className = '';
+            alertMessage.innerHTML = message;
+            alert.className = '';
 
-            if(! sponsor.includes(this.value)) {
+            if (!sponsor.includes(this.value)) {
                 sponsor.pop();
                 sponsor.push(this.value);
             }
 
         })
 
-        sponsorButton2.addEventListener('click', function(){
+        sponsorButton2.addEventListener('click', function() {
             message = '';
-                alertMessage.innerHTML = message;
-                alert.className = '';
-            if(! sponsor.includes(this.value)) {
+            alertMessage.innerHTML = message;
+            alert.className = '';
+            if (!sponsor.includes(this.value)) {
                 sponsor.pop();
                 sponsor.push(this.value);
             }
         })
 
-        sponsorButton3.addEventListener('click', function(){
+        sponsorButton3.addEventListener('click', function() {
             message = '';
-                alertMessage.innerHTML = message;
-                alert.className = '';
-            if(! sponsor.includes(this.value)) {
+            alertMessage.innerHTML = message;
+            alert.className = '';
+            if (!sponsor.includes(this.value)) {
                 sponsor.pop();
                 sponsor.push(this.value);
             }
 
         })
 
-        btn.addEventListener('click', function(){
-            if(sponsor.length > 0){
-            form.submit();
-            }else{
+        btn.addEventListener('click', function() {
+            if (sponsor.length > 0) {
+                form.submit();
+            } else {
                 message = 'Selezionare lo sponsor';
                 alertMessage.innerHTML = message;
                 alert.className = 'alert alert-danger';
             }
         })
-
-
     </script>
-
-
 @endsection
