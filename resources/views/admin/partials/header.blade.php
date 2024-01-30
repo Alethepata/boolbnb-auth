@@ -5,12 +5,17 @@
                 <img src="{{ asset('images/assets/Boolbnb_logo.webp') }}" alt="logo">
             </a>
         </div>
+
+        <!-- Versione desktop  -->
         <div class="logout">
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="log-out-button">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
         </div>
+        <!-- Fine Versione desktop  -->
+
+        <!-- Versione Mobile  -->
         <div class="hamburger-menu">
             <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight"><span class="navbar-toggler-icon">&#9776;</span></a>
@@ -45,6 +50,7 @@
                 </div>
             </div>
         </div>
+        <!--Fine Versione Mobile  -->
 
     </div>
 </header>
