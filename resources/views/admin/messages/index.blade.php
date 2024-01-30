@@ -21,14 +21,15 @@
                     <td>{{ $date }}</td>
                     <td>{{ $message->apartment->title }}</td>
                     <td>
-                        <a class="btn btn-dark" href="{{ route('admin.messages.show', $message) }}"><i
+                        <a class="btn btn-pers" href="{{ route('admin.messages.show', $message) }}"><i
                                 class="fa-solid fa-circle-info" style="color: #ffffff;"></i></a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{-- Versione desktop --}}
+    {{-- Fine Versione desktop --}}
+    {{-- Versione Mobile  --}}
     <div class="contain-m">
         @foreach ($messages as $message)
             <div class="mex">
@@ -45,4 +46,5 @@
             </div>
         @endforeach
     </div>
+    {{-- Fine Versione Mobile  --}}
 @endsection

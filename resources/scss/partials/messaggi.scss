@@ -1,4 +1,5 @@
 @media screen and (max-width: 600px){
+    // Index Message
     .t-desktop {
         display: none;
     }
@@ -24,12 +25,21 @@
                 }
             }
         }
-
     }
 }
+// Show Message
+.card {
+    width: 100%;
+}
+
 
 @media screen and (min-width: 600px){
+    // Index Message
     .contain-m {
         display: none;
+    }
+
+    .card {
+        width: 50%;
     }
 }
