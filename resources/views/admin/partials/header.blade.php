@@ -12,8 +12,8 @@
             </form>
         </div>
         <div class="hamburger-menu">
-            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"><i class="fa-solid fa-bars"></i></button>
+            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"><span class="navbar-toggler-icon">&#9776;</span></a>
 
             <div div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                 aria-labelledby="offcanvasRightLabel">
@@ -39,8 +39,7 @@
                     <div class="ham-canvas">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="log-out-button btncanvas">Logout <i
-                                    class="fa-solid fa-right-from-bracket"></i></button>
+                            <button class="btncanvas">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
                         </form>
                     </div>
                 </div>
