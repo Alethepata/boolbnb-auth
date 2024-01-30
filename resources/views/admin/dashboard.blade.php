@@ -9,10 +9,10 @@
                     <a href="{{route('admin.apartments.show', $apartment)}}">
                         <div class="card border-0">
                             <div class="card-image">
-                                <img src="{{asset('storage/' . $apartment->img) }}"class="card-img-top rounded-3" alt="{{$apartment->title}}">
+                                <img src="{{asset($apartment->img) }}"class="card-img-top rounded-3" alt="{{$apartment->title}}">
                             </div>
                             <div class="text-content p-3 text-center">
-                              <h5>{{$apartment->title}}</h5>
+                                <h5>{{$apartment->title}}</h5>
                             </div>
                         </div>
                     </a>
