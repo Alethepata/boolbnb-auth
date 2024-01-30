@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import "./partials/hamburger";
 @import "./partials/listapartments";
+@import "./partials/newapartment";
 
 .header-content{
     width: 100%;
@@ -80,32 +81,7 @@
 .main-wrapper{
     padding-top: 120px;
     height: calc(100vh - 120px);
-    .form-container{
-        width: 50%;
-        margin: auto;
-        .brown, p, input{
-            color: #724D3F;
-        }
-        .btn-services{
-            border: 1px solid #146C94;
-            color: #146C94;
-            &:focus {
-                background-color: #146C94;
-                color: white;
-            }
 
-        }
-        .btn-submit{
-            color: #146C94;
-            background-color: #146C94;
-            border: 1px solid #146C94;
-            color: white;
-            &:hover {
-              background-color: #724D3F;
-              border: 1px solid #724D3F;
-            }
-        }
-    }
     .form-hidden{
         width: 100%;
         border: none;
