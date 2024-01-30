@@ -4,6 +4,8 @@
 @import "./partials/newapartment";
 @import "./partials/sponsors";
 @import "./partials/dropin";
+@import "./partials/messaggi";
+@import "./partials/dashboard";
 
 .header-content{
     width: 100%;
@@ -136,5 +138,24 @@ h1{
     margin: 30px 0;
 }
 
+.t-desktop {
+    .btn-pers {
+        background-color: #146C94;
+    }
+}
+
+.show-msg {
+    .card {
+        border: 2px solid #146C94;
+        .card-header {
+            background-color: #146C94;
+            color: white;
+        }
+        .card-footer {
+            background-color: #146C94;
+            color: white;
+        }
+    }
 
 
+}

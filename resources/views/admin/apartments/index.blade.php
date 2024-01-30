@@ -3,7 +3,7 @@
 @section('content')
     <h1>Lista appartamenti</h1>
     {{-- Vista Desktop  --}}
-    <table class="table w-100">
+    <table class="table list w-100">
         <thead>
             <tr>
                 <th scope="col">Appartamento</th>
