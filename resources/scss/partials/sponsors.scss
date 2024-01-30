@@ -1,8 +1,39 @@
+.card-pers {
+    border: 1px solid #146C94;
+    color: white;
+    box-shadow: 10px 10px 5px rgb(208, 208, 208);
+        &:hover{
+            box-shadow: 10px 10px 5px rgba(25, 167, 206, 0.289);
+        }
+    .form-check-input:checked {
+        background-color: #146C94;
+    }
+
+}
+.card-pers:first-child {
+    background-color: #4d723fe3;
+}
+
+.card-pers:nth-child(2) {
+    background-color: grey;
+}
+
+.card-pers:last-child {
+    background-color: rgb(193, 165, 8);
+}
+
+.form-select {
+    border: 2px solid #724D3F;
+    color: #724D3F;
+}
+
+
 @media screen and (min-width: 600px){
 
     .c-desktop {
         display: flex;
         justify-content: center;
+
     }
 
     .container-select {

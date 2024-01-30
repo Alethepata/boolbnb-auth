@@ -4,7 +4,7 @@
     {{-- Versione desktop --}}
     <table class="table t-desktop">
         <thead>
-            <tr>
+            <tr class="col-pers">
                 <th scope="col">Email</th>
                 <th scope="col">Data</th>
                 <th scope="col">In riferimento a</th>
@@ -13,13 +13,13 @@
         </thead>
         <tbody>
             @foreach ($messages as $message)
-                <tr>
-                    <td>{{ $message->email }}</td>
+                <tr class="tr-pers">
+                    <td class="td-pers">{{ $message->email }}</td>
                     @php
                         $date = $message->created_at->diffForHumans();
                     @endphp
-                    <td>{{ $date }}</td>
-                    <td>{{ $message->apartment->title }}</td>
+                    <td class="td-pers">{{ $date }}</td>
+                    <td class="td-pers">{{ $message->apartment->title }}</td>
                     <td>
                         <a class="btn btn-pers" href="{{ route('admin.messages.show', $message) }}"><i
                                 class="fa-solid fa-circle-info" style="color: #ffffff;"></i></a>

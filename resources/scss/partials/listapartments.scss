@@ -1,9 +1,13 @@
 .card-m {
     background-color: #146C94;
     display: none;
-    margin: 10px auto;
+    margin: 20px auto;
     border: 2px solid #724D3F;
     color: white;
+    box-shadow: 10px 10px 5px rgb(208, 208, 208);
+        &:hover{
+            box-shadow: 10px 10px 5px rgba(25, 167, 206, 0.289);
+        }
     .badge {
         margin-bottom: 15px;
     }
@@ -28,4 +32,6 @@
     .card-m {
       display: block;
     }
-  }
+
+}
+

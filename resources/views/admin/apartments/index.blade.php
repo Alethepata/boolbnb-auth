@@ -5,7 +5,7 @@
     {{-- Vista Desktop  --}}
     <table class="table list w-100">
         <thead>
-            <tr>
+            <tr class="col-pers">
                 <th scope="col">Appartamento</th>
                 <th scope="col">Indirizzo</th>
                 <th scope="col">Sponsorizzazione</th>
@@ -14,9 +14,9 @@
         </thead>
         <tbody>
             @foreach ($apartments as $apartment)
-                <tr>
-                    <td>{{ $apartment->title }}</td>
-                    <td>{{ $apartment->address }}</td>
+                <tr class="tr-pers">
+                    <td class="td-pers">{{ $apartment->title }}</td>
+                    <td class="td-pers">{{ $apartment->address }}</td>
                     <td>
                         @if (count($apartment->sponsors) > 0)
                             @foreach ($apartment->sponsors as $sponsor)

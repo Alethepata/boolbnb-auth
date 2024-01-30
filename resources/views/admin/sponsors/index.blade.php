@@ -36,7 +36,7 @@
                         <div class="col">
                             <div class="container c-desktop  my-5">
                                 @foreach ($sponsors as $sponsor)
-                                    <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                                    <div class="card card-pers text-center mb-3 mx-3" style="width: 18rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $sponsor->plan_title }}</h5>
                                             <p class="card-text">Durata sponsorizzazione: {{ $sponsor->duration }} ore</p>
