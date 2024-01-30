@@ -1,45 +1,59 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>{{ $apartment->title }}</h2>
+    <div class="show-apartment">
 
-    <p>{{ $apartment->address }}</p>
+        <div class="left-side">
+            <h2>{{ $apartment->title }}</h2>
 
-    <div class="image">
+            <p>{{ $apartment->address }}</p>
+            <ul class="d-flex">
+                <li><i class="fa-solid fa-hospital"></i>
+                    <div>{{ $apartment->rooms }}</div>
+                </li>
+                <li><i class="fa-solid fa-bed"></i>
+                    <div>{{ $apartment->beds }}</div>
+                </li>
+                <li><i class="fa-solid fa-bath"></i>
+                    <div>{{ $apartment->bathrooms }}</div>
+                </li>
+                <li><i class="fa-solid fa-ruler-combined"></i>
+                    <div>{{ $apartment->square_meters }}m²</div>
+                </li>
+            </ul>
+            <div class="image">
 
-        @if (substr($apartment->img, 0, 7) == 'uploads')
-            <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
-        @else
-            <img src="{{ asset($apartment->img) }}" alt="{{ $apartment->title }}">
-        @endif
+                @if (substr($apartment->img, 0, 7) == 'uploads')
+                    <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
+                @else
+                    <img src="{{ asset($apartment->img) }}" alt="{{ $apartment->title }}">
+                @endif
 
-    </div>
+            </div>
 
-    <div>
-        <h3>Specifiche:</h3>
+            <div>
 
-        <ul>
-            <li>Camere: {{ $apartment->rooms }}</li>
-            <li>Letti: {{ $apartment->beds }}</li>
-            <li>Bagni: {{ $apartment->bathrooms }}</li>
-            <li>Metri quadrati: {{ $apartment->square_meters }}m²</li>
-        </ul>
-
-        <h3>Servizi aggiuntivi:</h3>
+                <h3 class="servizi">Servizi aggiuntivi:</h3>
 
 
-        @forelse ($apartment->services as $service)
-            <span class="badge text-bg-primary">{{ $service->title }}</span>
-        @empty
-            <span>Non ci sono servizi aggiuntivi</span>
-        @endforelse
-    </div>
+                @forelse ($apartment->services as $service)
+                    <span class="badge text-bg-primary">{{ $service->title }}</span>
+                @empty
+                    <span>Non ci sono servizi aggiuntivi</span>
+                @endforelse
+            </div>
+        </div>
 
-    {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
 
-    <h1 class="mt-3">Statistiche dell appartamento</h1>
-    <div >
-        <canvas id="myChart" class="my-5"></canvas>
+        <div class="right-side">
+            {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
+
+            <h1 class="mt-3">Statistiche dell appartamento</h1>
+            <div class="graphic">
+                <canvas id="myChart" class="my-5"></canvas>
+            </div>
+        </div>
+
     </div>
 
 
