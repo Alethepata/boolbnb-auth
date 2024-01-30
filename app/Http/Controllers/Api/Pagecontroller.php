@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Sponsor;
 use App\Models\Message;
 use App\Models\Result;
 use App\Models\View;
@@ -54,7 +55,8 @@ class Pagecontroller extends Controller
 
         if ($num_rooms != null && $num_beds != null) {
             // var_dump('if stanze letti');
-            $query = Apartment::where('rooms', '>=', $num_rooms)
+            $query = Apartment::with('Sponsors')
+                ->where('rooms', '>=', $num_rooms)
                 ->where('beds', '>=', $num_beds);
             if ($services != null) {
                 // var_dump('if servizi eseguito');
@@ -65,7 +67,7 @@ class Pagecontroller extends Controller
             }
         } else {
             // var_dump('if all');
-            $query = Apartment::query();
+            $query = Apartment::with('Sponsors');
             // var_dump($query);
         }
         // var_dump('query^');
@@ -86,6 +88,7 @@ class Pagecontroller extends Controller
             $baseCoordinate = new Coordinate($latitude, $longitude);
 
             foreach ($apartments as $apartment) {
+                $apartment->load('Sponsors');
                 $apartmentCoordinate = new Coordinate($apartment->latitude, $apartment->longitude);
 
                 $calculator = new Vincenty();
