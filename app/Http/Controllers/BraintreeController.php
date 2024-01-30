@@ -13,8 +13,10 @@ class BraintreeController extends Controller
     public function showDropInForm(Request $request)
     {
         // Recupera i valori del form da $request
-        $sponsor = $request->input('sponsor');
-        $apartment = $request->input('apartment');
+        $sponsor_id = $request->input('sponsor');
+        $sponsor = Sponsor::find($sponsor_id);
+        $apartment_id = $request->input('apartment');
+        $apartment = Apartment::find($apartment_id);
 
         $gateway = new Gateway([
             'environment' => config('services.braintree.environment'),

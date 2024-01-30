@@ -8,8 +8,9 @@
     <title>Payment</title>
 </head>
 <body>
+    <p>Stai sponsorizzando <strong>{{$apartment->title}}</strong> con il piano <strong>{{$sponsor->plan_title}}</strong></p>
     <div id="dropin-container"></div>
-    <button id="submit-button">Invia Pagamento</button>
+    <button id="submit-button">Paga {{$sponsor->price}} &euro;</button>
 
     <script src="https://js.braintreegateway.com/web/dropin/1.30.0/js/dropin.min.js"></script>
     <script>
