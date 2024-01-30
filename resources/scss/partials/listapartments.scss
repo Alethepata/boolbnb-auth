@@ -1,18 +1,21 @@
 .card-m {
+    background-color: #146C94;
     display: none;
     margin: 10px auto;
-    border: 2px solid #146C94;
-    color: black;
+    border: 2px solid #724D3F;
+    color: white;
     .badge {
         margin-bottom: 15px;
     }
     .action {
         a {
-            background-color: #146C94;
+            border: 1px solid white;
+            background-color: #724D3F;
             color: white;
         }
         button {
-            background-color: #146C94;
+            border: 1px solid white;
+            background-color: #724D3F;
             color: white;
         }
     }
