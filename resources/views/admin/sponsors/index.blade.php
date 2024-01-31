@@ -5,7 +5,7 @@
         <div class="container-fluid text-center">
             <h1>Sponsorizza appartamento</h1>
         </div>
-        {{-- Messaggio --}}
+        {{-- Messaggio
         <div class="row row-cols-1">
             <div class="col">
                 @if (session('success'))
@@ -24,7 +24,7 @@
                     <p id="alert-message"></p>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- Form --}}
         <div class="row row-cols-1">
