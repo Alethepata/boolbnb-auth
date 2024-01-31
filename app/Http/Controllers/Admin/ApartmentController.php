@@ -128,15 +128,19 @@ class ApartmentController extends Controller
             }
             $form_data['img_name'] = $request->file('img')->getClientOriginalName();
 
-            $form_data['img'] = Storage::put('uploads', $form_data['img']);
+            $customPath = public_path('images/assets/apartment_images/');
+
+            $request->file('img')->move($customPath, $form_data['img_name']);
+
+            $form_data['img'] = 'images/assets/apartment_images/' . $form_data['img_name'];
         }
 
 
         $apartment->update($form_data);
 
-        if(array_key_exists('services', $form_data)){
+        if (array_key_exists('services', $form_data)) {
             $apartment->services()->sync($form_data['services']);
-        }else{
+        } else {
             $apartment->services()->detach();
         };
 

@@ -116,8 +116,8 @@
                 <div class="image-container mt-3">
                     <p>Antemprima immagine:</p>
                     <img id="image-preview" width="300" height="200"
-                        onerror="this.src='/images/assets/Placeholder.png'"
-                        src="{{ asset('storage/' . $apartment?->img) }}" alt="">
+                        onerror="this.src='/images/assets/Placeholder.png'" src="{{ asset($apartment?->img) }}"
+                        alt="">
                 </div>
                 @if (session('error'))
                     <p class="text-danger">{{ session('error') }}</p>
