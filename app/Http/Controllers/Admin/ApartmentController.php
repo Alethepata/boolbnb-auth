@@ -134,6 +134,12 @@ class ApartmentController extends Controller
 
         $apartment->update($form_data);
 
+        if(array_key_exists('services', $form_data)){
+            $apartment->services()->sync($form_data['services']);
+        }else{
+            $apartment->services()->detach();
+        };
+
 
         return redirect()->route('admin.apartments.show', $apartment);
     }
