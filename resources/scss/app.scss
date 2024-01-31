@@ -171,3 +171,19 @@ h1{
         color: #724D3F;
     }
 }
+
+
+.container-list{
+    border: 2px solid #146C94;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0px 0px 10px 0px lightgray;
+}
+
+.sponsor-badge{
+    background-color: #146C94;
+    color: white;
+    font-size: .75rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
