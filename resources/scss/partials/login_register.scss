@@ -1,5 +1,6 @@
 // Login
 .container-log {
+    overflow: hidden;
     .card {
         color: #724D3F;
         border: 2px solid #146C94;
@@ -46,6 +47,7 @@
 
 // Register
 .container-reg {
+    overflow: hidden;
     .card {
         color: #724D3F;
         border: 2px solid #146C94;
