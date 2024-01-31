@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="show-apartment">
-    <div class="row row-cols-2 align-items-end">
+    <div class="row row-cols-2 align-items-center">
         <div class="col">
             <div class="image">
                 @if (substr($apartment->img, 0, 7) == 'uploads')
@@ -13,7 +13,7 @@
             </div>
         </div>
             <div class="col ps-5">
-                <div class="text-content d-flex justify-content-between align-items-center">
+                <div class="text-content">
                     <div class="text">
                         <h2>{{ $apartment->title }}</h2>
                         <p>{{ $apartment->address }}</p>
@@ -33,9 +33,9 @@
                         </ul>
                     </div>
                     <div class="services-container">
-                        <h5 class="servizi">Servizi aggiuntivi:</h5>                                       
+                        <h5 class="servizi">Servizi aggiuntivi:</h5>
                         @forelse ($apartment->services as $service)
-                            <span>{{ $service->title }}</span>
+                            <span>{{ $service->title}}</span>
                         @empty
                             <span>Non ci sono servizi aggiuntivi</span>
                         @endforelse
@@ -50,60 +50,10 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col"></div>
+            </div>
         </div>
-
-        <!-- <div class="left-side">
-            <h2>{{ $apartment->title }}</h2>
-
-            <p>{{ $apartment->address }}</p>
-            <ul class="d-flex">
-                <li><i class="fa-solid fa-hospital"></i>
-                    <div>{{ $apartment->rooms }}</div>
-                </li>
-                <li><i class="fa-solid fa-bed"></i>
-                    <div>{{ $apartment->beds }}</div>
-                </li>
-                <li><i class="fa-solid fa-bath"></i>
-                    <div>{{ $apartment->bathrooms }}</div>
-                </li>
-                <li><i class="fa-solid fa-ruler-combined"></i>
-                    <div>{{ $apartment->square_meters }}m²</div>
-                </li>
-            </ul>
-            <div class="image">
-
-                @if (substr($apartment->img, 0, 7) == 'uploads')
-                    <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
-                @else
-                    <img src="{{ asset($apartment->img) }}" alt="{{ $apartment->title }}">
-                @endif
-
-            </div>
-
-            <div>
-
-                <h3 class="servizi">Servizi aggiuntivi:</h3>
-
-
-                @forelse ($apartment->services as $service)
-                    <span class="badge text-bg-primary">{{ $service->title }}</span>
-                @empty
-                    <span>Non ci sono servizi aggiuntivi</span>
-                @endforelse
-            </div>
-        </div> -->
-
-
-        <!-- <div class="right-side">
-            {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
-
-            <h1 class="mt-3">Statistiche dell appartamento</h1>
-            <div class="graphic">
-                <canvas id="myChart" class="my-5"></canvas>
-            </div>
-        </div> -->
-
-    <!-- </div> -->
 
 
     {{-- SCRIPT DEL GRAFICO --}}
