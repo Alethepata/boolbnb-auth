@@ -3,6 +3,16 @@
     .t-desktop {
         display: none;
     }
+     .btn-return {
+        a {
+            padding-left: 10px;
+            font-size: 20px;
+            color: #146C94;
+            &:hover {
+              color: #724D3F;
+            }
+        }
+    }
     .contain-m {
         width: 100%;
         background-color: #146C94;
@@ -36,6 +46,9 @@
 @media screen and (min-width: 600px){
     // Index Message
     .contain-m {
+        display: none;
+    }
+    .btn-return {
         display: none;
     }
 
