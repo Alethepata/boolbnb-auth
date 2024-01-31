@@ -9,35 +9,77 @@
 
     <title>Payment</title>
     @vite(['resources/js/app.js'])
+    <style>
+#loader-container{
+    height: 100vh;
+}
+#loader {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: block;
+        margin:15px auto;
+        position: relative;
+        color: #000000;
+        box-sizing: border-box;
+        animation: animloader 2s linear infinite;
+        }
+
+        @keyframes animloader {
+        0% {
+            box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+        }
+        25% {
+            box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
+        }
+        50% {
+            box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
+        }
+        75% {
+            box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+        }
+        100% {
+            box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+        }
+    }
+    </style>
 </head>
 
 <body>
+        <div id="loader-container" class="my-5 align-items-center justify-content-center container-fluid" style="display: none;">
+            <div id="loader"></div>
+        </div>
 
-    <div class="container my-5">
-        <div class="row row-cols-2">
-            <div class="col p-5">
-                <div class="">Stai sponsorizzando <strong>{{ $apartment->title }}</strong> con il piano
-                    <strong>{{ $sponsor->plan_title }}</strong>
+        <div class="container my-5" id='payment-container'>
+            <div class="row row-cols-2">
+                <div class="col p-5">
+                    <div class="">Stai sponsorizzando <strong>{{ $apartment->title }}</strong> con il piano
+                        <strong>{{ $sponsor->plan_title }}</strong>
+                    </div>
+                    <div>Prezzo: <strong>{{ $sponsor->price }} &euro;</strong></div>
                 </div>
-                <div>Prezzo: <strong>{{ $sponsor->price }} &euro;</strong></div>
+                <div class="col">
+                    <div id="dropin-container" class=""></div>
+                </div>
             </div>
-            <div class="col">
-                <div id="dropin-container" class=""></div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-2">
+                    <button id="submit-button" class="btn btn-primary w-100 ">Paga {{ $sponsor->price }} &euro;</button>
+
+                </div>
+
             </div>
         </div>
 
-        <div class="row justify-content-end mt-3">
-            <div class="col-2">
-                <button id="submit-button" class="btn btn-primary w-100 ">Paga {{ $sponsor->price }} &euro;</button>
-            </div>
 
-        </div>
-    </div>
 
 
 
     <script src="https://js.braintreegateway.com/web/dropin/1.30.0/js/dropin.min.js"></script>
+
     <script>
+
         document.addEventListener('DOMContentLoaded', function() {
             var sponsor = '{{ $sponsor }}'; // Recupera il valore di sponsor dalla variabile PHP
             var apartment = '{{ $apartment }}'; // Recupera il valore di apartment dalla variabile PHP
@@ -45,18 +87,25 @@
             var apartment_id = '{{ $apartment->id }}';
             var button = document.getElementById('submit-button');
             var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            var paymentContainer = document.getElementById('payment-container');
+            var loader = document.getElementById('loader-container');
+
 
             braintree.dropin.create({
                 authorization: '{{ $clientToken }}',
                 container: '#dropin-container'
             }, function(createErr, instance) {
                 button.addEventListener('click', function() {
+
+
+            // Nascondi il pulsante e mostra il loader
+                    paymentContainer.style.display = 'none';
+                    loader.style.display = 'block';
                     instance.requestPaymentMethod(function(err, payload) {
                         if (err) {
                             console.error(err);
                             return;
                         }
-
                         inviaPayloadAlServer(payload.nonce);
                     });
                 });
