@@ -29,15 +29,13 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul>
-                        <li><a href="{{ route('admin.home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                        </li>
-                        <li><a href="{{ route('admin.apartments.index') }}"><i class="fa-solid fa-list"></i> Lista
+                        <li><a href="{{ route('admin.apartments.index') }}"> Lista
                                 Appartamenti</a></li>
-                        <li><a href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-folder-plus"></i>
+                        <li><a href="{{ route('admin.apartments.create') }}">
                                 Nuovo Appartamento</a></li>
-                        <li><a href="{{ route('admin.messages.index') }}"><i class="fa-solid fa-envelope"></i>
+                        <li><a href="{{ route('admin.messages.index') }}">
                                 Messaggi</a></li>
-                        <li><a href="{{ route('admin.sponsors.index') }}"><i class="fa-solid fa-star"></i>
+                        <li><a href="{{ route('admin.sponsors.index') }}">
                                 Sponsor</a></li>
                     </ul>
                     <hr>

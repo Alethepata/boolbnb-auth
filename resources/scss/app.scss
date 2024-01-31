@@ -22,6 +22,8 @@
         .row-content{
             line-height: 50px;
             a{
+                display: flex;
+                justify-content: center;
                 color:white;
                 text-decoration: none;
                 &:hover{
