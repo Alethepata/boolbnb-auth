@@ -1,0 +1,82 @@
+// Login
+.container-log {
+    .card {
+        color: #724D3F;
+        border: 2px solid #146C94;
+        box-shadow: 0px 0px 10px 0px lightgray;
+        .card-header {
+            background-color: #146C94;
+            color: white;
+        }
+    }
+    .btn-pers {
+        background-color: #146C94;
+        color: white;
+        &:hover {
+            background-color: #724D3F;
+        }
+    }
+    .btn-link {
+        color: #19A7CE;
+        &:hover {
+            color: #724D3F;
+        }
+    }
+    .check-pers:checked {
+        background-color: #724D3F;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .container-log {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .container-log {
+        width: 100%;
+        .card {
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+    }
+}
+
+// Register
+.container-reg {
+    .card {
+        color: #724D3F;
+        border: 2px solid #146C94;
+        box-shadow: 0px 0px 10px 0px lightgray;
+        .card-header {
+            background-color: #146C94;
+            color: white;
+        }
+    }
+    .btn-pers {
+        background-color: #146C94;
+        color: white;
+        &:hover {
+            background-color: #724D3F;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .container-reg {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .container-reg {
+        width: 100%;
+        .card {
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+    }
+}

@@ -37,7 +37,7 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::get('/', [ApartmentController::class, 'index'])->name('home');
         Route::resource('apartments', ApartmentController::class);
         Route::resource('messages', MessageController::class);
         Route::resource('sponsors', PaymentController::class);
