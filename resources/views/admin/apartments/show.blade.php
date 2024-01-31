@@ -1,22 +1,34 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="show-apartment">
-        <div class="row row-cols-2 align-items-center">
-            <div class="col">
-                <div class="image">
-                    @if (substr($apartment->img, 0, 7) == 'uploads')
-                        <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
-                    @else
-                        <img src="{{ asset($apartment->img) }}" alt="{{ $apartment->title }}">
-                    @endif
-                </div>
+
+<div class="show-apartment">
+    <div class="row">
+        <div class="col">
+            <div class="text-up">
+                <h2>{{ $apartment->title }}</h2>
+                <p>{{ $apartment->address }}</p>
             </div>
-            <div class="col ps-5">
+        </div>
+    </div>
+    <div class="row row-cols-2 align-items-center row-cols-xs-1">
+        <div class="col">
+            <div class="image">
+                @if (substr($apartment->img, 0, 7) == 'uploads')
+                <img src="{{ asset('storage/' . $apartment->img) }}" alt="{{ $apartment->title }}">
+                @else
+                <img src="{{ asset($apartment->img) }}" alt="{{ $apartment->title }}">
+                @endif
+            </div>
+        </div>
+            <div class="col">
+
                 <div class="text-content">
                     <div class="text">
-                        <h2>{{ $apartment->title }}</h2>
-                        <p>{{ $apartment->address }}</p>
+                        <div class="text-down">
+                            <h2>{{ $apartment->title }}</h2>
+                            <p>{{ $apartment->address }}</p>
+                        </div>
                         <ul class="d-flex">
                             <li><i class="fa-solid fa-hospital"></i>
                                 <div>{{ $apartment->rooms }}</div>
@@ -38,16 +50,13 @@
                     </div>
                 </div>
                 <div class="graphic-container ">
-                    <h5 class="mt-3">Statistiche dell' appartamento</h5>
+                    <h5>Statistiche dell' appartamento</h5>
                     {{-- GRAFICO VISUALIZZAZIONI E MESSAGGI --}}
                     <div class="graphic">
                         <canvas id="myChart" class="p-2 border rounded-3"></canvas>
                     </div>
 
                 </div>
-            </div>
-            <div class="row">
-                <div class="col"></div>
             </div>
         </div>
 
