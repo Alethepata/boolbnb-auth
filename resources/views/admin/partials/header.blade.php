@@ -30,21 +30,10 @@
                 <div class="offcanvas-body">
                     <ul>
 
-                        <li><a href="{{ route('admin.apartments.index') }}"> Lista
-                                Appartamenti</a></li>
-                        <li><a href="{{ route('admin.apartments.create') }}">
-                                Nuovo Appartamento</a></li>
-                        <li><a href="{{ route('admin.messages.index') }}">
-                                Messaggi</a></li>
-                        <li><a href="{{ route('admin.sponsors.index') }}">
-                                Sponsor</a></li>
-
-                        <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.apartments.index') }}">Lista Appartamenti</a></li>
-                        <li><a href="{{ route('admin.apartments.create') }}">Nuovo Appartamento</a></li>
-                        <li><a href="{{ route('admin.messages.index') }}">Messaggi</a></li>
-                        <li><a href="{{ route('admin.sponsors.index') }}">Sponsor</a></li>
-
+                        <li><a href="{{ route('admin.apartments.index') }}"> Lista Appartamenti</a></li>
+                        <li><a href="{{ route('admin.apartments.create') }}"> Nuovo Appartamento</a></li>
+                        <li><a href="{{ route('admin.messages.index') }}"> Messaggi</a></li>
+                        <li><a href="{{ route('admin.sponsors.index') }}"> Sponsor</a></li>
                     </ul>
                     <hr>
                     <div class="ham-canvas">
