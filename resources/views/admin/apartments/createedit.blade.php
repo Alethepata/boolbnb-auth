@@ -158,7 +158,7 @@
                         <input type="checkbox" class="btn-check checkbox" id="service-{{ $service->id }}"
                             name="services[]" value="{{ $service->id }}" autocomplete="off"
                             @if ($apartment?->services->contains($service)) checked @endif>
-                        <label class="btn rounded-5 btn-outline-info btn-services"
+                        <label class="btn rounded-5 btn-outline-info"
                             for="service-{{ $service->id }}">{{ $service->title }}</label>
                     @endforeach
                     <p id="error-checkbox"></p>

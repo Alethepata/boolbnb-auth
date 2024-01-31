@@ -9,11 +9,13 @@
         .btn-services{
             border: 1px solid #146C94;
             color: #146C94;
-            &:focus {
-                background-color: #146C94;
-                color: white;
+            &:hover{
+                border-color: #146C94;
+                color: #146C94;
             }
-
+            &:active{
+                background-color: #146C94;
+            }
         }
         .btn-submit{
             color: #146C94;
