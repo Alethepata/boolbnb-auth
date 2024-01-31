@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="btn-return"><a href="{{ route('admin.messages.index') }}"><i class="fa-solid fa-arrow-left"></i></a></div>
+    <div class="btn-return "><a href="{{ route('admin.messages.index') }}"><i class="fa-solid fa-arrow-left"></i></a></div>
     <div class="d-flex justify-content-center my-5 show-msg">
         <div class="card text-center">
             <div class="card-header">
