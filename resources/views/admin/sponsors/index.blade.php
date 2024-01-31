@@ -5,27 +5,6 @@
         <div class="container-fluid text-center">
             <h1>Sponsorizza appartamento</h1>
         </div>
-        {{-- Messaggio
-        <div class="row row-cols-1">
-            <div class="col">
-                @if (session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('error') }}
-                    </div>
-                @endif
-            </div>
-            <div class="col">
-                <div id="alert">
-                    <p id="alert-message"></p>
-                </div>
-            </div>
-        </div> --}}
-
         {{-- Form --}}
         <div class="row row-cols-1">
             <div class="col">
@@ -82,73 +61,60 @@
     </div>
 
     <script>
-        document.getElementById('apartmentSelect').addEventListener('change', function() {
-            var selectedValue = this.value;
-            var submitButtonRow = document.getElementById('submitButtonRow');
+document.getElementById('apartmentSelect').addEventListener('change', function () {
+    console.log('Change event triggered');
+    updateSubmitButtonVisibility();
+});
 
-            // Mostra/nascondi il pulsante in base alla selezione
-            if (selectedValue !== 'Seleziona un appartamento') {
-                submitButtonRow.style.display = 'flex';
-            } else {
-                submitButtonRow.style.display = 'none';
-            }
+let sponsorButtons = document.querySelectorAll('.form-check-input');
 
+sponsorButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        console.log('Radio button clicked');
+        // Deseleziona tutti i radio button
+        sponsorButtons.forEach(function (btn) {
+            btn.checked = false;
         });
 
+        // Seleziona il radio button cliccato
+        button.checked = true;
 
-        let sponsorButton1 = document.getElementById('sponsor-button-1');
-        let sponsorButton2 = document.getElementById('sponsor-button-2');
-        let sponsorButton3 = document.getElementById('sponsor-button-3');
-        let alert = document.getElementById('alert');
-        let alertMessage = document.getElementById('alert-message');
-        let form = document.getElementById('form');
-        let btn = document.getElementById('btn');
+        updateSubmitButtonVisibility();
+    });
 
-        let message;
-        const sponsor = [];
+    // Aggiungi evento di click sulla card
+    let card = button.closest('.card');
+    card.addEventListener('click', function () {
+        console.log('Card clicked');
+        button.checked = true;
+        updateSubmitButtonVisibility();
+    });
+});
 
-        sponsorButton1.addEventListener('click', function() {
+function updateSubmitButtonVisibility() {
+    console.log('Update visibility function called');
+    var selectedValue = document.getElementById('apartmentSelect').value;
+    var selectedSponsor = Array.from(sponsorButtons).find(btn => btn.checked);
 
-            message = '';
-            alertMessage.innerHTML = message;
-            alert.className = '';
+    // Mostra/nascondi il pulsante in base alla selezione
+    var submitButtonRow = document.getElementById('submitButtonRow');
+    if (selectedValue !== 'Nessun appartamento selezionato' && selectedSponsor) {
+        console.log('Displaying submit button');
+        submitButtonRow.style.display = 'flex';
+    } else {
+        console.log('Hiding submit button');
+        submitButtonRow.style.display = 'none';
+    }
+}
 
-            if (!sponsor.includes(this.value)) {
-                sponsor.pop();
-                sponsor.push(this.value);
-            }
+document.getElementById('btn').addEventListener('click', function () {
+    console.log('Submit button clicked');
+    event.preventDefault();
+    // Aggiungiamo un alert per vedere se il click viene gestito
+    // alert('Submit button clicked');
+    // Commentiamo il form.submit() al momento per vedere se l'alert funziona
+    form.submit();
+});
 
-        })
-
-        sponsorButton2.addEventListener('click', function() {
-            message = '';
-            alertMessage.innerHTML = message;
-            alert.className = '';
-            if (!sponsor.includes(this.value)) {
-                sponsor.pop();
-                sponsor.push(this.value);
-            }
-        })
-
-        sponsorButton3.addEventListener('click', function() {
-            message = '';
-            alertMessage.innerHTML = message;
-            alert.className = '';
-            if (!sponsor.includes(this.value)) {
-                sponsor.pop();
-                sponsor.push(this.value);
-            }
-
-        })
-
-        btn.addEventListener('click', function() {
-            if (sponsor.length > 0) {
-                form.submit();
-            } else {
-                message = 'Selezionare lo sponsor';
-                alertMessage.innerHTML = message;
-                alert.className = 'alert alert-danger';
-            }
-        })
     </script>
 @endsection
