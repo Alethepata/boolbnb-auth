@@ -13,12 +13,24 @@
                     Sponsor</a></li>
         </ul> --}}
 
+
+        <div class="row row-content">
+            <div class="col text-center"><a href="{{ route('admin.apartments.index') }}"> Lista
+                    Appartamenti</a></div>
+            <div class="col text-center"><a href="{{ route('admin.apartments.create') }}">
+                    Nuovo Appartamento</a></div>
+            <div class="col text-center"><a href="{{ route('admin.messages.index') }}">
+                    Messaggi</a></div>
+            <div class="col text-center"><a href="{{ route('admin.sponsors.index') }}">
+                    Sponsor</a></div>
+
         <div class="row row-cols-5 row-content">
             <div class="col text-center"><a href="{{ route('admin.home') }}">Dashboard</a></div>
             <div class="col text-center"><a href="{{ route('admin.apartments.index') }}">Lista Appartamenti</a></div>
             <div class="col text-center"><a href="{{ route('admin.apartments.create') }}">Nuovo Appartamento</a></div>
             <div class="col text-center"><a href="{{ route('admin.messages.index') }}">Messaggi</a></div>
             <div class="col text-center"><a href="{{ route('admin.sponsors.index') }}">Sponsor</a></div>
+
         </div>
     </nav>
 </aside>
