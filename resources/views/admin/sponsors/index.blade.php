@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container c-all">
-        <div class="container-fluid text-center my-5">
+        <div class="container-fluid text-center">
             <h1>Sponsorizza appartamento</h1>
         </div>
         {{-- Messaggio --}}
@@ -56,9 +56,11 @@
                     <div class="row">
                         {{-- Seleziona appartamento --}}
                         <div class="container-select">
+                            <!-- <label for="apartmentSelect"  class="text-center">Seleziona un appartamento</label> -->
+                            <h5 class="text-center mb-3">Seleziona un appartamento</h5>
                             <select class="form-select" aria-label="Default select example" name="apartment"
                                 id="apartmentSelect">
-                                <option selected>Seleziona un appartamento</option>
+                                <option selected>Nessun appartamento selezionato</option>
                                 @foreach ($apartments as $apartment)
                                     <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
                                 @endforeach
