@@ -12,6 +12,7 @@ use App\Models\Result;
 use App\Models\View;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
+use Carbon\Carbon;
 
 //use Illuminate\Database\Query\Builder;
 
@@ -21,7 +22,10 @@ class Pagecontroller extends Controller
 
     public function apartments()
     {
-        $apartments = Apartment::join('apartment_sponsor', 'apartments.id', '=', 'apartment_sponsor.apartment_id')->get();
+        $apartments = Apartment::whereHas('Sponsors', function ($query) {
+            $query->where('ending_date', '>', Carbon::now());
+        })->get();
+
 
         foreach ($apartments as $apartment) {
             $apartment->img = asset($apartment->img);
